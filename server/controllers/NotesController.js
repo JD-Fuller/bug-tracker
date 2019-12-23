@@ -1,7 +1,7 @@
 import express from "express";
-import bugService from "../services/BugService";
+import noteService from "../services/NoteService";
 
-export default class BugController {
+export default class NoteController {
   constructor() {
     this.router = express
       .Router()
@@ -15,7 +15,7 @@ export default class BugController {
 
   async getAll(req, res, next) {
     try {
-      let data = await bugService.getAll();
+      let data = await noteService.getAll();
       return res.send(data);
     } catch (error) {
       next(error);
@@ -23,7 +23,7 @@ export default class BugController {
   }
   async getById(req, res, next) {
     try {
-      let data = await bugService.getById(req.params.id);
+      let data = await noteService.getById(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -31,7 +31,7 @@ export default class BugController {
   }
   async create(req, res, next) {
     try {
-      let data = await bugService.create(req.body);
+      let data = await noteService.create(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
@@ -39,7 +39,7 @@ export default class BugController {
   }
   async edit(req, res, next) {
     try {
-      let data = await bugService.edit(req.params.id, req.body);
+      let data = await noteService.edit(req.params.id, req.body);
       return res.data.send(data);
     } catch (error) {
       next(error);
@@ -47,7 +47,7 @@ export default class BugController {
   }
   async delete(req, res, next) {
     try {
-      await bugService.delete(req.params.id);
+      await noteService.delete(req.params.id);
       return res.send("Successfully Deleted");
     } catch (error) {
       next(error);

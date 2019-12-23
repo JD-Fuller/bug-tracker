@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import Bug from "../models/Bug";
+import Note from "../models/Note";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Bug", Bug);
+const _repository = mongoose.model("Note", Note);
 
-class BugService {
-  async getAll() {
-    return await _repository.find({});
+class NoteService {
+  async getAll(id) {
+    return await _repository.find({ _id: id });
   }
   async getById(id) {
     let data = await _repository.findById(id);
@@ -28,15 +28,12 @@ class BugService {
     return data;
   }
   async delete(id) {
-    let data = await _repository.findOneAndUpdate(
-      { _id: id },
-      { closed: true }
-    );
+    let data = await _repository.findOneAndDelete({ _id: id });
     if (!data) {
       throw new ApiError("Invalid ID", 400);
     }
   }
 }
 
-const bugService = new BugService();
-export default BugService;
+const noteService = new NoteService();
+export default NoteService;
