@@ -31,7 +31,7 @@
         </div>
       </form>
     </div>
-    <div class="row">
+    <div class="row bugs">
       <div class="col" v-for="bug in bugs" :key="bug.id">
         <bug-component :bugData="bug" />
       </div>
@@ -41,8 +41,7 @@
 
 <script>
 // @ is an alias to /src
-import BugComponent from "@/components/Bug.vue";
-import HomeComponent from "@/components/HomeComponent.vue";
+import BugComponent from "@/components/Bug";
 
 export default {
   name: "home",
@@ -78,8 +77,7 @@ export default {
     }
   },
   components: {
-    BugComponent,
-    HomeComponent
+    BugComponent
   }
 };
 </script>

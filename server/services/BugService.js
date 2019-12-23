@@ -5,6 +5,9 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Bug", Bug);
 
 class BugService {
+  static getAll() {
+    throw new Error("Method not implemented.");
+  }
   async getAll() {
     return await _repository.find({});
   }

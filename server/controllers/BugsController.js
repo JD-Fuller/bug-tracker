@@ -4,11 +4,11 @@ import bugService from "../services/BugService";
 export default class BugController {
   constructor() {
     this.router = express
-      .Router()
+      .Router({ mergeParams: true })
       //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
-      .get("", this.getAll)
-      .get("/:id", this.getById)
-      .post("", this.create)
+      .get("", this.getAll) //api/bugs
+      .get("/:id", this.getById) //api/bugs/:id
+      .post("", this.create) //api/bugs
       .put("/:id", this.edit)
       .delete("/id", this.delete);
   }

@@ -1,7 +1,22 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <router-link :to="{name: 'about'}">About Page</router-link>
-    <router-link :to="{name: 'home'}">Home Page</router-link>
+  <div class="bug container-fluid">
+    Bug shown here
+    {{ bug }}
   </div>
 </template>
+<script>
+export default {
+  name: "bug",
+  mounted() {
+    this.$store.dispatch("getActiveBug", this.$route.params.id);
+  },
+  computed: {
+    bug() {
+      return this.$store.state.activeBug;
+    }
+  },
+  components: {}
+};
+</script>
+<style>
+</style>

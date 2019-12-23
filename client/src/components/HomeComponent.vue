@@ -1,8 +1,5 @@
 <template>
-  <div class="hello">
-    TEST
-    {{description}}
-  </div>
+  <div class="hello">{{description}}</div>
 </template>
 
 <script>
@@ -11,9 +8,9 @@ export default {
   data() {
     return {
       newBug: {
-        description: "",
-        title: "",
-        reportedBy: ""
+        description: "Check the inline specs on the rotary gerder",
+        title: "Brake Pads",
+        reportedBy: "Tommy Calahan"
       }
     };
   }
