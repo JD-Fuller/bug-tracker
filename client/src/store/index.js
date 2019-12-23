@@ -2,11 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
-let _apiServer = axios.create({
+let _api = axios.create({
   baseURL: "//localhost:3000/api"
 });
 
-let _api = axios.create({
+let _sandBox = axios.create({
   baseURL: "//bcw-sandbox.herokuapp.com/api/jdfuller",
   timeout: 8000
 });
