@@ -44,7 +44,7 @@ export default new Vuex.Store({
       commit("addBug", res.data);
     },
     async closed({ commit, dispatch }, id) {
-      await _sandbox.delete("cars/" + id);
+      await _sandbox.delete("bugs/" + id);
       dispatch("getBugs");
     }
   },
