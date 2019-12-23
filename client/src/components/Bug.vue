@@ -1,7 +1,7 @@
 <template>
   <div class="bug" :class="{ greyscale: bugData.closed }">
     <router-link :to="{ name: 'bugDetails', params: { id: bugData.id } }">
-      <p>{{ bugMakeUpperCase }} | {{ bugData.title }}</p>
+      <p>{{ bugData.title }}</p>
     </router-link>
     <button @click="closed">Closed</button>
   </div>
@@ -11,11 +11,7 @@
 export default {
   name: "Bug",
   props: ["bugData"],
-  computed: {
-    bugMakeUpperCase() {
-      return this.bugData.title.toUpperCase();
-    }
-  },
+  computed: {},
   methods: {
     closed() {
       this.$store.dispatch("closed", this.bugData.id);
