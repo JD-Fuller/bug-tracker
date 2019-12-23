@@ -42,6 +42,7 @@
 <script>
 // @ is an alias to /src
 import BugComponent from "@/components/Bug.vue";
+import HomeComponent from "@/components/HomeComponent.vue";
 
 export default {
   name: "home",
@@ -77,7 +78,8 @@ export default {
     }
   },
   components: {
-    BugComponent
+    BugComponent,
+    HomeComponent
   }
 };
 </script>

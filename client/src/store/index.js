@@ -32,19 +32,19 @@ export default new Vuex.Store({
   },
   actions: {
     async getBugs({ commit, dispatch }) {
-      let res = await _sandbox.get("bugs");
+      let res = await _api.get("bugs");
       commit("setAllBugs", res.data);
     },
     async getBugById({ commit, dispatch }, id) {
-      let res = await _sandbox.get("bugs/" + id);
+      let res = await _api.get("bugs/" + id);
       commit("setActiveBug", res.data);
     },
     async createBug({ commit, dispatch }, bug) {
-      let res = await _sandbox.post("bugs", bug);
+      let res = await _api.post("bugs", bug);
       commit("addBug", res.data);
     },
     async closed({ commit, dispatch }, id) {
-      await _sandbox.delete("bugs/" + id);
+      await _api.delete("bugs/" + id);
       dispatch("getBugs");
     }
   },
