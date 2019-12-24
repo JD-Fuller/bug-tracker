@@ -1,21 +1,37 @@
 <template>
   <div class="home container-fluid">
-    <header class="row">
+    <div class="row">
       <div class="col header-text" style="min-height: 4vh;">
         B
         <img alt="Vue logo" src="../assets/logo.png" />G Tracker
       </div>
-    </header>
+    </div>
     <div class="row">
       <form>
         <div class="col form-group" style="text-align: left;">
           <div class="form-group">
-            <input type="text" name="name" id placeholder="Name" v-model="newBug.reportedBy" />
-            <small id="nameHelp" class="form-text text-muted">Add Full Name</small>
+            <input
+              type="text"
+              name="name"
+              id
+              placeholder="Name"
+              v-model="newBug.reportedBy"
+            />
+            <small id="nameHelp" class="form-text text-muted"
+              >Add Full Name</small
+            >
           </div>
           <div class="form-group">
-            <input type="text" name="title" id placeholder="Title" v-model="newBug.title" />
-            <small id="titleHelp" class="form-text text-muted">Main bug title or issue</small>
+            <input
+              type="text"
+              name="title"
+              id
+              placeholder="Title"
+              v-model="newBug.title"
+            />
+            <small id="titleHelp" class="form-text text-muted"
+              >Main bug title or issue</small
+            >
           </div>
           <div class="form-group">
             <input
@@ -25,7 +41,9 @@
               placeholder="Description"
               v-model="newBug.description"
             />
-            <small id="descriptionHelp" class="form-text text-muted">Add bug description</small>
+            <small id="descriptionHelp" class="form-text text-muted"
+              >Add bug description</small
+            >
           </div>
           <button type="submit" class="btn btn-danger">Log Bug:</button>
         </div>
@@ -33,6 +51,8 @@
     </div>
     <div class="row bugs">
       <div class="col" v-for="bug in bugs" :key="bug.id">
+        {{ bug }}
+
         <bug-component :bugData="bug" />
       </div>
     </div>

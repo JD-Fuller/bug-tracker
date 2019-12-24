@@ -1,7 +1,7 @@
 <template>
   <div class="bug" :class="{ greyscale: bugData.closed }">
-    <router-link :to="{ name: '', params: { id: bugData.id } }">
-      <p>{{ bugData.title }}</p>
+    <router-link :to="{ name: 'bugDetails', params: { id: bugData.id } }">
+      <p>{{ bugData.title }} | {{ bugData.Description }}</p>
     </router-link>
     <button @click="closed">Closed</button>
   </div>

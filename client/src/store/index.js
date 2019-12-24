@@ -2,11 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
-let _api = axios.create({
-  baseURL: "//localhost:3000/api"
-});
+// let _api = axios.create({
+//   baseURL: "//localhost:3000/api"
+// });
 
-let _sandBox = axios.create({
+let _api = axios.create({
   baseURL: "//bcw-sandbox.herokuapp.com/api/jdfuller",
   timeout: 8000
 });
@@ -17,7 +17,8 @@ export default new Vuex.Store({
   state: {
     notes: [],
     bugs: [],
-    activeBug: {}
+    activeBug: {},
+    activeNote: {}
   },
   mutations: {
     setAllBugs(state, data) {
@@ -28,6 +29,16 @@ export default new Vuex.Store({
     },
     setActiveBug(state, bug) {
       state.activeBug = bug;
+    },
+    setAllNotes(state, data) {
+      state.notes = data;
+    },
+    addNote(state, note) {
+      debugger;
+      state.notes.push(note);
+    },
+    setActiveNote(state, note) {
+      state.activeNote = note;
     }
   },
   actions: {
@@ -46,7 +57,20 @@ export default new Vuex.Store({
     async closed({ commit, dispatch }, id) {
       await _api.delete("bugs/" + id);
       dispatch("getBugs");
+    },
+    async getNotes({ commit, dispatch }) {
+      let res = await _api.get("notes");
+      commit("setAllNotes", res.data);
+    },
+    async getNoteById({ commit, dispatch }, id) {
+      let res = await _api.get("notes/" + id);
+      commit("setActiveNote", res.data);
+    },
+    async createNote({ commit, dispatch }, note) {
+      debugger;
+      let res = await _api.post("notes", note);
+      debugger;
+      commit("addNote", res.data);
     }
-  },
-  modules: {}
+  }
 });

@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <router-link v-if="$route.name != 'home'" :to="{ name: 'home' }"
+      >Bugs</router-link
+    >
     <router-view />
   </div>
 </template>

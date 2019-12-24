@@ -5,9 +5,6 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Bug", Bug);
 
 class BugService {
-  static getAll() {
-    throw new Error("Method not implemented.");
-  }
   async getAll() {
     return await _repository.find({});
   }
@@ -16,6 +13,7 @@ class BugService {
     if (!data) {
       throw new ApiError("Invalid ID", 400);
     }
+    return data;
   }
   async create(rawData) {
     let data = await _repository.create(rawData);
