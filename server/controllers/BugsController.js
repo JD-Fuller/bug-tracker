@@ -10,7 +10,7 @@ export default class BugController {
       .get("/:id", this.getById) //api/bugs/:id
       .post("", this.create) //api/bugs
       .put("/:id", this.edit)
-      .delete("/id", this.delete);
+      .delete("/:id", this.delete);
   }
 
   async getAll(req, res, next) {

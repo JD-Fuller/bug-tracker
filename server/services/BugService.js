@@ -20,13 +20,18 @@ class BugService {
     return data;
   }
   async edit(id, update) {
-    let data = await _repository.findOneAndUpdate({ _id: id }, update, {
-      new: true
-    });
-    if (!data) {
-      throw new ApiError("Invalid ID", 400);
+    let check = await _repository.findById(id);
+    if (check.get("closed") !== true) {
+      let data = await _repository.findOneAndUpdate({ _id: id }, update, {
+        new: true
+      });
+      if (!data) {
+        throw new ApiError("Invalid ID", 400);
+      }
+      return data;
+    } else {
+      throw new ApiError("Unable to close");
     }
-    return data;
   }
   async delete(id) {
     let data = await _repository.findOneAndUpdate(
@@ -40,4 +45,4 @@ class BugService {
 }
 
 const bugService = new BugService();
-export default BugService;
+export default bugService;

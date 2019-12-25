@@ -36,4 +36,4 @@ class NoteService {
 }
 
 const noteService = new NoteService();
-export default NoteService;
+export default noteService;
