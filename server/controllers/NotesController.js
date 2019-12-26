@@ -9,7 +9,7 @@ export default class NoteController {
       .get("/:bugId/notes", this.getAll)
       .post("", this.create)
       .put("/:id", this.edit)
-      .delete("/id", this.delete);
+      .delete("/:id", this.delete);
   }
 
   async getAll(req, res, next) {
