@@ -7,13 +7,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col addbug">
         <addBug />
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        <buglist />
+      <div class="col buglist ml-5">
+        <bugList />
       </div>
     </div>
   </div>
@@ -21,8 +21,8 @@
 
 <script>
 // @ is an alias to /src
-import BugList from "@/components/BugList";
 import AddBug from "@/components/AddBug";
+import BugList from "@/components/BugListComponent";
 
 export default {
   name: "home",

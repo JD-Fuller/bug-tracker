@@ -1,11 +1,7 @@
 <template>
   <div class="buglist container-fluid">
     <div class="row">
-      <div class="col">
-        <ol>
-          <li v-for="bug in bugs" :key="bug.id">{{ bug.title | bug.description }}</li>
-        </ol>
-      </div>
+      <div class="col"></div>
     </div>
   </div>
 </template>
@@ -13,6 +9,10 @@
 <script>
 export default {
   name: "BugList",
+  mounted() {
+    this.$store.dispatch("getBugs");
+    console.log("from buglist - mounted");
+  },
   computed: {
     bugs() {
       return this.$store.state.bugs;
@@ -22,11 +22,7 @@ export default {
     //   console.log("Bug was closed");
     // }
   },
-  methods: {},
-  mounted() {
-    this.$store.dispatch("getBugs");
-    console.log("from buglist - mounted");
-  }
+  methods: {}
 };
 </script>
 
