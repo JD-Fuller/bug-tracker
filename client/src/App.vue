@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <!-- <router-link v-if="$route.name != 'home'" :to="{ name: 'home' }"
-      >Bugs</router-link
-    >-->
-    <router-view />
+    <div id="nav">
+      <router-link style="padding-right: 15px" to="/">Home</router-link>
+      <router-link style="padding-right: 15px" to="/notes">Bug Details</router-link>
+      <router-link style="padding-right: 15px" to="/about">About</router-link>
+      <router-view />
+    </div>
   </div>
 </template>
 

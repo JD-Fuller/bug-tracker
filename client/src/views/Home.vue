@@ -5,12 +5,22 @@
         B
         <img alt="Vue logo" src="../assets/logo.png" />G Tracker View
       </div>
+      <div class="col buttons">
+        <button class="btn btn-danger" data-toggle="modal" data-target="#one">
+          <i class="fas fa-plus"></i>
+            BUG
+          </a>
+        </button>
+        <BugModal id="one">
+          <div slot="title">Add Bug</div>Bug Form
+        </BugModal>
+      </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col addbug">
         <addBug />
       </div>
-    </div>
+    </div>-->
     <div class="row">
       <div class="col buglist ml-5">
         <bugList />
@@ -23,12 +33,14 @@
 // @ is an alias to /src
 import AddBug from "@/components/AddBug";
 import BugList from "@/components/BugListComponent";
+import BugModal from "@/components/BugModal";
 
 export default {
   name: "home",
   components: {
     AddBug,
-    BugList
+    BugList,
+    BugModal
   }
 };
 </script>

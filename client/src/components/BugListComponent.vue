@@ -16,7 +16,7 @@
             <th scope="row">{{number}}</th>
             <td style="text-align: left;">{{ bug.title}}</td>
             <td>{{ bug.reportedBy }}</td>
-            <td>{{ status }}</td>
+            <td>{{ bug.closed }}</td>
             <td>{{bug.updatedAt}}</td>
           </router-link>
         </tr>

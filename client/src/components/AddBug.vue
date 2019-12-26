@@ -1,5 +1,5 @@
 <template>
-  <div class="row addBug">
+  <div class="modal row addBug">
     <form @submit.prevent="addBug">
       <div class="col form-group" style="text-align: left;">
         <div class="form-group">
