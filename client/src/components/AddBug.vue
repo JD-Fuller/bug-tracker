@@ -1,40 +1,4 @@
-<template>
-  <div class="modal row addBug">
-    <form @submit.prevent="addBug">
-      <div class="col form-group" style="text-align: left;">
-        <div class="form-group">
-          <input type="text" name="name" id placeholder="Name" v-model="newBug.reportedBy" />
-          <small id="nameHelp" class="form-text text-muted">Add Full Name</small>
-        </div>
-        <div class="form-group">
-          <input type="text" name="title" id placeholder="Title" v-model="newBug.title" />
-          <small id="titleHelp" class="form-text text-muted">Main bug title or issue</small>
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            name="description"
-            id
-            placeholder="Description"
-            v-model="newBug.description"
-          />
-          <small id="descriptionHelp" class="form-text text-muted">Add bug description</small>
-        </div>
-        <button type="submit" class="btn btn-danger">Log Bug:</button>
-      </div>
-      <h3>Current Bugs: {{confirmation}}</h3>
-    </form>
-    <!-- 
-    <ul>
-      <li v-for="bug in bugs" :key="bug._id">
-        <router-link
-          :to="{ title: 'bug', params: { id: bug._id } }"
-          @click="setActiveBug(bug)"
-        >{{ bug.closed + " | " + bug.title + " | " + bug.description }}</router-link>
-      </li>
-    </ul>-->
-  </div>
-</template>
+<template> </template>
 
 <script>
 export default {

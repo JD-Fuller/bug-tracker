@@ -2,7 +2,9 @@
   <div id="app">
     <div id="nav">
       <router-link style="padding-right: 15px" to="/">Home</router-link>
-      <router-link style="padding-right: 15px" to="/notes">Bug Details</router-link>
+      <router-link style="padding-right: 15px" to="/bugs/:id"
+        >Bug Details</router-link
+      >
       <router-link style="padding-right: 15px" to="/about">About</router-link>
       <router-view />
     </div>

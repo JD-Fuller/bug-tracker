@@ -6,7 +6,7 @@ export default class NoteController {
     this.router = express
       .Router()
       //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
-      .get("/:bugId/notes", this.getAll)
+      .get("/bugs/:bugId/notes", this.getAll)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete);

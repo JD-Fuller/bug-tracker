@@ -7,7 +7,12 @@
             <!-- slot added for input, named slot -->
             <slot name="title"></slot>
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -16,12 +21,28 @@
           <form @submit.prevent="addBug">
             <div class="col form-group" style="text-align: left;">
               <div class="form-group">
-                <input type="text" name="name" id placeholder="Name" v-model="newBug.reportedBy" />
-                <small id="nameHelp" class="form-text text-muted">Add Full Name</small>
+                <input
+                  type="text"
+                  name="name"
+                  id
+                  placeholder="Name"
+                  v-model="newBug.reportedBy"
+                />
+                <small id="nameHelp" class="form-text text-muted"
+                  >Add Full Name</small
+                >
               </div>
               <div class="form-group">
-                <input type="text" name="title" id placeholder="Title" v-model="newBug.title" />
-                <small id="titleHelp" class="form-text text-muted">Main bug title or issue</small>
+                <input
+                  type="text"
+                  name="title"
+                  id
+                  placeholder="Title"
+                  v-model="newBug.title"
+                />
+                <small id="titleHelp" class="form-text text-muted"
+                  >Main bug title or issue</small
+                >
               </div>
               <div class="form-group">
                 <input
@@ -31,22 +52,20 @@
                   placeholder="Description"
                   v-model="newBug.description"
                 />
-                <small id="descriptionHelp" class="form-text text-muted">Add bug description</small>
+                <small id="descriptionHelp" class="form-text text-muted"
+                  >Add bug description</small
+                >
               </div>
               <button type="submit" class="btn btn-danger">Log Bug:</button>
             </div>
           </form>
-
-          <slot></slot>
+          <!-- <slot></slot> -->
         </div>
-        <div class="modal-footer">
-          <h5>Neato!</h5>
-        </div>
+        <div class="modal-footer"></div>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -88,6 +107,4 @@ export default {
 };
 </script>
 
-
-<style scoped>
-</style>
+<style scoped></style>

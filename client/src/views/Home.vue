@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid">
-    <div class="row">
-      <div class="col header-text" style="min-height: 4vh;">
+    <div class="row" style="padding-bottom: 3rem;">
+      <div class="col header-text" style="min-height: 5vh; font: all-small-caps bold 2em;">
         B
         <img alt="Vue logo" src="../assets/logo.png" />G Tracker View
       </div>
@@ -22,7 +22,8 @@
       </div>
     </div>-->
     <div class="row">
-      <div class="col buglist ml-5">
+      <div class="buglist ml-5">
+        <h2 style="text-align: left;">Open Bugs:{{confirmation}}</h2>
         <bugList />
       </div>
     </div>
@@ -41,6 +42,11 @@ export default {
     AddBug,
     BugList,
     BugModal
+  },
+  computed: {
+    confirmation() {
+      return this.$store.state.bugs.length;
+    },
   }
 };
 </script>

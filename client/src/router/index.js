@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 // @ts-ignore
 import Home from "../views/Home.vue";
 // @ts-ignore
-import Note from "../views/Note.vue";
+import BugDetails from "../views/BugDetails.vue";
 // @ts-ignore
 import About from "../views/About.vue";
 
@@ -16,20 +16,14 @@ const routes = [
     component: Home
   },
   {
-    path: "/bugs",
+    path: "/bugs/:id",
     name: "bugs",
-    component: Home
-  },
-  {
-    path: "/notes",
-    name: "notes",
-    component: Note
+    component: BugDetails
   },
   {
     path: "/about",
     name: "about",
     component: function() {
-      // @ts-ignore
       return import("../views/About.vue");
     }
   },
