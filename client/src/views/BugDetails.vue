@@ -1,5 +1,5 @@
 <template>
-  <div class="bug-details container-fluid">
+  <div class="bugDetail container-fluid">
     <div class="row" style="padding-bottom: 3rem;">
       <div
         class="col header-text"
@@ -24,31 +24,36 @@
       </div>
     </div>-->
     <div class="row">
-      <div class="buglist ml-5">
+      <div class="activeBug col ml-5">
+        <h1 style="text-align: left;">Active Bug: {{ activeBug.title }}</h1>
         <h2 style="text-align: left;">Status: {{ activeBug.closed }}</h2>
-        <bugList />
+        <activeBug v-bind:activeBugs="activeBugs" />
       </div>
-
-      <activebug />
     </div>
   </div>
 </template>
 
 <script>
-import activebug from "../components/ActiveBug";
+import activeBug from "@/components/ActiveBug";
+import BugModal from "@/components/BugModal";
+
 export default {
-  name: "bug-details",
+  name: "bugDetail",
   mounted() {
-    this.$store.dispatch("getBugById");
+    this.$store.dispatch("getBugById", this.$route.params.id);
     console.log("from buglist - mounted");
   },
   computed: {
     activeBug() {
       return this.$store.state.activeBug;
+    },
+    status() {
+      //TODO change to activeNotes
+      return this.$store.state.activeBug.length;
     }
   },
   components: {
-    activebug
+    activeBug
   }
 };
 </script>

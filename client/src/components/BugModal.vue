@@ -18,7 +18,7 @@
         </div>
         <div class="modal-body">
           <!-- slot added for input -->
-          <form @submit.prevent="addBug">
+          <form @submit.prevent="addBug() && setActiveBug()">
             <div class="col form-group" style="text-align: left;">
               <div class="form-group">
                 <input
@@ -56,7 +56,10 @@
                   >Add bug description</small
                 >
               </div>
-              <button type="submit" class="btn btn-danger">Log Bug:</button>
+
+              <button type="submit" class="btn btn-danger">
+                Log Bug:
+              </button>
             </div>
           </form>
           <!-- <slot></slot> -->

@@ -3,7 +3,7 @@
     <table class="table table-striped table-borderless table-hover">
       <thead class="thead-light">
         <tr>
-          <th scope="col">1</th>
+          <!-- <th scope="col">1</th> -->
           <th scope="col" style="text-align: left;">Title</th>
           <th scope="col">Reported By</th>
           <th scope="col">Status</th>
@@ -11,13 +11,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="bug in bugs" :key="bug._id">
+        <tr class="table" v-for="bug in bugs" :key="bug._id">
           <router-link
             :to="{ name: 'bugs', params: { id: bug._id } }"
-            @click="setActiveBug(bug)"
+            v-on:click="setActiveBug(bug.id)"
             style="padding-right: 15px"
           >
-            <th scope="row">#</th>
+            <!-- <th scope="row">#</th> -->
             <td>{{ bug.title }}</td>
             <td>{{ bug.reportedBy }}</td>
             <td>{{ bug.closed }}</td>
@@ -39,12 +39,12 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getBugs");
+    return this.$store.dispatch("getBugs");
   },
   methods: {
-    setActiveBug(activeBug) {
+    setActiveBug() {
       debugger;
-      this.$store.dispatch("setActiveBug", activeBug);
+      this.$store.dispatch("setActiveBug");
     }
   },
   computed: {

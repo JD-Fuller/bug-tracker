@@ -24,6 +24,7 @@ const routes = [
     path: "/about",
     name: "about",
     component: function() {
+      // @ts-ignore
       return import("../views/About.vue");
     }
   },

@@ -20,14 +20,23 @@ export default class NoteController {
       next(error);
     }
   }
-  // async getById(req, res, next) {
-  //   try {
-  //     let data = await noteService.getById(req.params.id);
-  //     return res.send(data);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
+  async getById(req, res, next) {
+    try {
+      let data = await noteService.getById(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getNoteByBugId(req, res, next) {
+    try {
+      let data = await noteService.getNoteByBugId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async create(req, res, next) {
     try {
       let data = await noteService.create(req.body);
