@@ -27,14 +27,14 @@
       <div class="activeBug col ml-5">
         <h1 style="text-align: left;">Active Bug: {{ activeBug.title }}</h1>
         <h2 style="text-align: left;">Status: {{ activeBug.closed }}</h2>
-        <activeBug v-bind:activeBugs="activeBugs" />
+        <bugDetails v-bind:activeBugs="activeBugs" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import activeBug from "@/components/ActiveBug";
+import bugDetails from "@/components/ActiveBug";
 import BugModal from "@/components/BugModal";
 
 export default {
@@ -53,7 +53,8 @@ export default {
     }
   },
   components: {
-    activeBug
+    bugDetails,
+    BugModal
   }
 };
 </script>
