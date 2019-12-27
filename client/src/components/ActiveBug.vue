@@ -4,6 +4,7 @@
       <div class="col">
         <h3>Active Bug</h3>
         {{ activeBug }}
+        {{ bug.title }}
       </div>
     </div>
   </div>
@@ -15,6 +16,9 @@ export default {
   computed: {
     activeBug() {
       return this.$store.state.activeBug;
+    },
+    bugs() {
+      return this.$store.state.bugs;
     }
   }
 };
