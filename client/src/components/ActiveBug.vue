@@ -1,5 +1,5 @@
 <template>
-  <div class="table-responsive">
+  <div class="activeBug table-responsive">
     <table class="table table-striped table-borderless table-hover">
       <thead class="thead-light">
         <tr>
@@ -12,16 +12,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="table" v-for="activebug in activebugs" :key="activebug._id">
+        <tr
+          class="activeBug"
+          v-for="activebug in activebugs"
+          :key="activebug._id"
+        >
           <router-link
             :to="{ name: 'bugs', params: { id: activebug._id } }"
             v-on:click="setActiveNote(activebug.id)"
             style="padding-right: 15px"
           >
             <td>{{ activebug.title }}</td>
-            <td>{{ activebug.reportedBy }}</td>
-            <td>{{ activebug.closed }}</td>
-            <td>{{ activebug.updatedAt | formatDate }}</td>
+            <td>{{ bug.reportedBy }}</td>
+            <td>{{ bug.closed }}</td>
+            <td>{{ bug.updatedAt | formatDate }}</td>
           </router-link>
           <router-view />
         </tr>
@@ -33,9 +37,15 @@
 <script>
 export default {
   name: "ActiveBug",
+  props: ["activeBugs", "bugs", "activebugs"],
   data() {
     return {
-      updatedAt: ""
+      activeBug: {
+        title: "",
+        reportedBy: "",
+        closed: "",
+        updatedAt: ""
+      }
     };
   },
   mounted() {
@@ -56,9 +66,12 @@ export default {
     }
   },
   computed: {
-    activeBug() {
-      return this.$store.state.activeBug;
+    bug() {
+      return this.$store.state.bug;
     },
+    // activeBug() {
+    //   return this.$store.state.activeBug;
+    // },
     status(bug) {
       for (var closed in bug) {
         if (closed != false) {

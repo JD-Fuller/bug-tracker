@@ -41,6 +41,10 @@ import BugModal from "@/components/BugModal";
 
 export default {
   name: "home",
+  props: ["bugs", "activebug"],
+  mounted() {
+    return this.$store.dispatch("getBugs");
+  },
   components: {
     AddBug,
     BugList,
