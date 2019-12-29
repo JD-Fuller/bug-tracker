@@ -1,5 +1,6 @@
 import express from "express";
 import noteService from "../services/NoteService";
+import bugService from "../services/BugService";
 
 export default class NoteController {
   constructor() {
@@ -37,6 +38,15 @@ export default class NoteController {
       next(error);
     }
   }
+  // Made a change here to get from bugService and .getById versus the original, noteservice and getbynoteid
+  async getNotesbyBugId(req, res, next) {
+    try {
+      let data = await bugService.getById(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async create(req, res, next) {
     try {
       let data = await noteService.create(req.body);
@@ -48,7 +58,11 @@ export default class NoteController {
   async edit(req, res, next) {
     try {
       let data = await noteService.edit(req.params.id, req.body);
-      return res.data.send(data);
+      if (!data) {
+        console.error("Not able to edit");
+      } else {
+        return res.data.send(data);
+      }
     } catch (error) {
       next(error);
     }

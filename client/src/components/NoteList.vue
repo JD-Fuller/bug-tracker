@@ -4,17 +4,18 @@
       <thead class="thead-light">
         <tr>
           <!-- <th scope="col">1</th> -->
-          <th scope="col" style="text-align: left;">Title</th>
-          <th scope="col">Reported By</th>
+          <th scope="col" style="text-align: left;">Comment</th>
+          <th scope="col">Name</th>
           <th scope="col">Status</th>
           <th scope="col">Last Modified</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table" v-for="note in notes" :key="note._id">
+        <tr class="note" v-for="note in notes" :key="note._id">
           <!-- <th scope="row">#</th> -->
           <td>{{ note.content }}</td>
           <td>{{ note.reportedBy }}</td>
+          <td>{{ note.flagged }}</td>
           <td>{{ note.createdAt | formatDate }}</td>
         </tr>
       </tbody>
@@ -25,17 +26,20 @@
 <script>
 export default {
   name: "NoteList",
-  props: ["notes", "note"],
+  // props: ["note"],
   data() {
     return {
       createdAt: ""
     };
   },
   mounted() {
-    return this.$store.dispatch("getNotes");
+    //Confirmed this mounted is working - gtg
+    debugger;
+    return this.$store.dispatch("getNotesById", this.$route.params.id);
   },
   methods: {
     setActiveNote() {
+      debugger;
       this.$store.dispatch("setActiveNote");
     }
   },

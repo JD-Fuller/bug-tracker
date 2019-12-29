@@ -14,8 +14,12 @@ class NoteService {
       throw new ApiError("Invalid ID", 400);
     }
   }
+
   async getNoteByBugId(bugId) {
-    return await _repository.find({ bugId: bugId });
+    return await _repository.findById({ bugId: bugId });
+  }
+  async getNotesByBugId(bugId) {
+    return await _repository.findById({ bugId: bugId });
   }
   async create(rawData) {
     let data = await _repository.create(rawData);

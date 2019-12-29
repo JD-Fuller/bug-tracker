@@ -12,17 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          class="activeBug"
-          v-for="activebug in activebugs"
-          :key="activebug._id"
-        >
+        <tr class="table" v-for="activebug in activebugs" :key="activebug._id">
           <router-link
             :to="{ name: 'bugs', params: { id: activebug._id } }"
-            v-on:click="setActiveNote(activebug.id)"
+            v-on:click="setActiveNote(activebug._id)"
             style="padding-right: 15px"
           >
-            <td>{{ activebug.title }}</td>
+            <td>{{ bug.title }}</td>
             <td>{{ bug.reportedBy }}</td>
             <td>{{ bug.closed }}</td>
             <td>{{ bug.updatedAt | formatDate }}</td>
@@ -49,7 +45,8 @@ export default {
     };
   },
   mounted() {
-    return this.$store.dispatch("getActiveBug");
+    // Checks out in the debugger - this mounted is GTG
+    this.$store.dispatch("getActiveBug", this.$route.params.id);
   },
   methods: {
     addNote() {
@@ -67,7 +64,7 @@ export default {
   },
   computed: {
     bug() {
-      return this.$store.state.bug;
+      return this.$store.state.activebugs;
     },
     // activeBug() {
     //   return this.$store.state.activeBug;

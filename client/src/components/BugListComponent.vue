@@ -14,9 +14,11 @@
         <tr class="table" v-for="bug in bugs" :key="bug._id">
           <router-link
             :to="{ name: 'bugs', params: { id: bug._id } }"
-            v-on:click="setActiveBug(bug.id)"
+            debugger
+            v-on:click="setActiveBug(bug._id)"
             style="padding-right: 15px"
           >
+            <!-- The bugs below are coming from computed: bugs() -->
             <!-- <th scope="row">#</th> -->
             <td>{{ bug.title }}</td>
             <td>{{ bug.reportedBy }}</td>
@@ -48,9 +50,7 @@ export default {
     }
   },
   computed: {
-    activeBugs() {
-      return this.$store.state.activeBug;
-    },
+    // Returns all bugs to the list
     bugs() {
       return this.$store.state.bugs;
     },

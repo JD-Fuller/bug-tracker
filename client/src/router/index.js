@@ -16,8 +16,28 @@ const routes = [
     component: Home
   },
   {
+    path: "/bugs",
+    name: "allBugs",
+    component: Home
+  },
+  {
     path: "/bugs/:id",
     name: "bugs",
+    component: BugDetails
+  },
+  {
+    path: "/bugs/:id/notes",
+    name: "returnNotes",
+    component: BugDetails
+  },
+  {
+    path: "/bugs/:id/notes/:id",
+    name: "editNotes",
+    component: BugDetails
+  },
+  {
+    path: "/notes",
+    name: "addNote",
     component: BugDetails
   },
   {

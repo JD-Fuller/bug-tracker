@@ -1,26 +1,29 @@
 <template>
-  <div class="notes">
+  <div class="notes" style="text-align: left;">
     <form @submit.prevent="createNote">
-      <input v-model="note" type="text" placeholder="Add Details" required />
-      <input v-model="reportedBy" type="text" placeholder="Add Name" required />
-      <button type="submit">Add Note</button>
+      <h2 style="text-align: left;">Add Note</h2>
+      <div class="form-group">
+        <h3>Details</h3>
+        <input v-model="note" type="text" placeholder="Add Details" required />
+      </div>
+      <div class="form-group">
+        <h3>Name</h3>
+
+        <input
+          v-model="reportedBy"
+          type="text"
+          placeholder="Add Name"
+          required
+        />
+      </div>
     </form>
-    {{ notes }}
+    <button class="fas fa-plus" type="submit">Note</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "Notes",
-  props: ["bug", "bugs"],
-  mounted() {
-    this.$store.dispatch("getNotes", this.$route.params.id);
-  },
-  computed: {
-    notes() {
-      return this.$store.state.notes;
-    }
-  },
   data() {
     return {
       note: "",
@@ -36,6 +39,7 @@ export default {
       };
       this.$store.dispatch("createNote", note);
       this.note = "";
+      this.reportedBy = "";
     }
   }
 };
