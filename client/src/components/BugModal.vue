@@ -56,10 +56,11 @@
                   >Add bug description</small
                 >
               </div>
-
-              <button type="submit" class="btn btn-danger">
-                Log Bug:
-              </button>
+              <router-link style="padding-right: 15px" to="/bugs/:id">
+                <button type="submit" class="btn btn-danger">
+                  Log Bug:
+                </button>
+              </router-link>
             </div>
           </form>
           <!-- <slot></slot> -->

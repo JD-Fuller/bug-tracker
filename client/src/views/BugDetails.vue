@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import ActiveBug from "@/components/ActiveBug";
+// import ActiveBug from "@/components/ActiveBug";
 import BugModal from "@/components/BugModal";
 import Notes from "@/components/Notes";
 import NoteList from "@/components/NoteList";
@@ -88,7 +88,7 @@ export default {
     }
   },
   components: {
-    ActiveBug,
+    // ActiveBug,
     BugModal,
     Notes,
     NoteList

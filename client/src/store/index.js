@@ -32,15 +32,19 @@ export default new Vuex.Store({
       state.activeBug = bug;
     },
     setAllNotes(state, data) {
+      debugger;
       state.notes = data;
     },
     addNote(state, note) {
+      debugger;
       state.notes.push(note);
+      console.log("A note has been added at the store");
     },
     setActiveNote(state, note) {
       state.activeNote = note;
     },
     setActiveNotes(state, data) {
+      debugger;
       state.activeNotes = data;
     }
   },
@@ -59,6 +63,7 @@ export default new Vuex.Store({
     },
 
     setActiveBug({ commit, dispatch }, bug) {
+      debugger;
       commit("setActiveBug", bug);
     },
     async getActiveBug({ commit, dispatch }, id) {
@@ -70,17 +75,28 @@ export default new Vuex.Store({
       await _api.delete("bugs/" + id);
       dispatch("getBugs");
     },
+    async setActiveNotes({ commit, dispatch }, id) {
+      debugger;
+      let res = await _api.get("bugs/" + id + "/notes");
+      commit("setActiveNotes", res.data);
+    },
+
     async getNotes({ commit, dispatch }) {
+      debugger;
       let res = await _api.get("notes");
       commit("setAllNotes", res.data);
     },
     async getNoteById({ commit, dispatch }, id) {
-      let res = await _api.get("bugs/" + id + "/notes");
+      let res = await _api.get("bugs/" + id + "/notes/" + id);
       commit("setActiveNote", res.data);
+    },
+    async getNotesByBugId({ commit, dispatch }, id) {
+      let res = await _api.get("bug/" + id + "/notes");
+      commit("setActiveNotes", res.data);
     },
     async getNotesById({ commit, dispatch }, id) {
       debugger;
-      let res = await _api.get("bugs/" + id + "/notes/" + id);
+      let res = await _api.get("notes/" + id);
       commit("setActiveNotes", res.data);
     },
     async createNote({ commit, dispatch }, note) {

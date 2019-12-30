@@ -15,7 +15,7 @@
           <router-link
             :to="{ name: 'bugs', params: { id: bug._id } }"
             debugger
-            v-on:click="setActiveBug(bug._id)"
+            v-on:click="setActiveBug(bug._id) + setActiveNotes(bug._id)"
             style="padding-right: 15px"
           >
             <!-- The bugs below are coming from computed: bugs() -->
@@ -41,17 +41,23 @@ export default {
     };
   },
   mounted() {
+    debugger;
     return this.$store.dispatch("getBugs");
   },
   methods: {
     setActiveBug() {
       debugger;
-      this.$store.dispatch("setActiveBug");
+      this.$store.dispatch("setActiveBug"), this.$route.params.id;
+    },
+    setActiveNotes() {
+      debugger;
+      this.$store.dispatch("setActiveNotes"), this.$route.params.id;
     }
   },
   computed: {
     // Returns all bugs to the list
     bugs() {
+      debugger;
       return this.$store.state.bugs;
     },
     status(bug) {

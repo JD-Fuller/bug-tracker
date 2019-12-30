@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="note" v-for="note in notes" :key="note._id">
+        <tr class="note" v-for="note in notes" :key="note._id"></tr>
+        <tr>
           <!-- <th scope="row">#</th> -->
           <td>{{ note.content }}</td>
           <td>{{ note.reportedBy }}</td>
-          <td>{{ note.flagged }}</td>
           <td>{{ note.createdAt | formatDate }}</td>
         </tr>
       </tbody>
@@ -26,7 +26,6 @@
 <script>
 export default {
   name: "NoteList",
-  // props: ["note"],
   data() {
     return {
       createdAt: ""
@@ -35,19 +34,24 @@ export default {
   mounted() {
     //Confirmed this mounted is working - gtg
     debugger;
-    return this.$store.dispatch("getNotesById", this.$route.params.id);
+    return this.$store.dispatch("getNotesByBugId");
+
+    // this.$route.params.id);
+    // return this.$store.state.notes;
   },
   methods: {
     setActiveNote() {
       debugger;
-      this.$store.dispatch("setActiveNote");
+      this.$store.dispatch("setActiveNotes"), this.$route.params.id;
     }
   },
   computed: {
     activeNotes() {
-      return this.$store.state.activeNote;
+      debugger;
+      return this.$store.state.activeNotes;
     },
     notes() {
+      debugger;
       return this.$store.state.notes;
     }
 
