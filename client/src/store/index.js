@@ -26,6 +26,7 @@ export default new Vuex.Store({
       state.bugs = data;
     },
     addBug(state, bug) {
+      debugger;
       state.bugs.push(bug);
     },
     setActiveBug(state, bug) {
@@ -38,13 +39,13 @@ export default new Vuex.Store({
     addNote(state, note) {
       debugger;
       state.notes.push(note);
+      debugger;
       console.log("A note has been added at the store");
     },
     setActiveNote(state, note) {
       state.activeNote = note;
     },
     setActiveNotes(state, data) {
-      debugger;
       state.activeNotes = data;
     }
   },

@@ -44,7 +44,8 @@ export default {
     return {
       newNote: {
         content: "",
-        reportedBy: ""
+        reportedBy: "",
+        bug: this.$route.params.id
       }
       // flagged: {
       //   enum: ["pending", "completed", "rejected"]
@@ -56,16 +57,22 @@ export default {
       let note = { ...this.newNote };
       this.$store.dispatch("createNote", note);
       debugger;
+      //originally had this.content & this.reportedBy
       this.newNote = {
-        content: newNote.content,
-        bug: this.$route.params.id,
-        reportedBy: newNote.reportedBy
+        content: "",
+        reportedBy: "",
+        bug: this.$route.params.id
       };
       debugger;
     },
     setAllNotes(note) {
       debugger;
       this.$store.dispatch("setAllNotes", note);
+    },
+    computed: {
+      notes() {
+        return this.$store.state.notes;
+      }
     }
     // this.$store.dispatch("createNote", note);
     // this.content = "";
