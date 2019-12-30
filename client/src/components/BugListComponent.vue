@@ -15,7 +15,7 @@
           <router-link
             :to="{ name: 'bugs', params: { id: bug._id } }"
             debugger
-            v-on:click="setActiveBug(bug._id) + setActiveNotes(bug._id)"
+            v-on:click="setActiveBug(bug._id) + setAllNotes(bug._id)"
             style="padding-right: 15px"
           >
             <!-- The bugs below are coming from computed: bugs() -->
@@ -49,9 +49,9 @@ export default {
       debugger;
       this.$store.dispatch("setActiveBug"), this.$route.params.id;
     },
-    setActiveNotes() {
+    setAllNotes() {
       debugger;
-      this.$store.dispatch("setActiveNotes"), this.$route.params.id;
+      this.$store.dispatch("setAllNotes"), this.$route.params.id;
     }
   },
   computed: {

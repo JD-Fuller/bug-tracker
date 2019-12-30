@@ -28,16 +28,16 @@ export default {
   name: "NoteList",
   data() {
     return {
+      note: "",
       createdAt: ""
     };
   },
   mounted() {
     //Confirmed this mounted is working - gtg
     debugger;
-    return this.$store.dispatch("getNotesByBugId");
-
-    // this.$route.params.id);
-    // return this.$store.state.notes;
+    return this.$store.dispatch("getNotesByBugId", this.$route.params.id);
+    debugger;
+    return this.$store.state.notes;
   },
   methods: {
     setActiveNote() {

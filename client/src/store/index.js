@@ -66,6 +66,7 @@ export default new Vuex.Store({
       debugger;
       commit("setActiveBug", bug);
     },
+
     async getActiveBug({ commit, dispatch }, id) {
       //getActiveBug debugged - gtg
       let res = await _api.get("bugs/" + id);
@@ -91,8 +92,8 @@ export default new Vuex.Store({
       commit("setActiveNote", res.data);
     },
     async getNotesByBugId({ commit, dispatch }, id) {
-      let res = await _api.get("bug/" + id + "/notes");
-      commit("setActiveNotes", res.data);
+      let res = await _api.get("bugs/" + id + "/notes");
+      commit("setAllNotes", res.data);
     },
     async getNotesById({ commit, dispatch }, id) {
       debugger;

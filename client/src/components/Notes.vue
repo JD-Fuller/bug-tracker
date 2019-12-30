@@ -1,6 +1,6 @@
 <template>
   <div class="notes" style="text-align: left;">
-    <form @submit.prevent="createNote() && setActiveNotes()">
+    <form @submit.prevent="createNote()">
       <h2 style="text-align: left;">Add Note</h2>
       <div class="form-group">
         <h3>Details</h3>
@@ -39,6 +39,7 @@
 <script>
 export default {
   name: "Notes",
+  props: ["note", "notes"],
   data() {
     return {
       newNote: {
@@ -54,14 +55,17 @@ export default {
     createNote() {
       let note = { ...this.newNote };
       this.$store.dispatch("createNote", note);
+      debugger;
       this.newNote = {
-        content: "",
+        content: newNote.content,
         bug: this.$route.params.id,
-        reportedBy: ""
+        reportedBy: newNote.reportedBy
       };
+      debugger;
     },
-    setActiveNotes(note) {
-      this.$store.dispatch("setActiveNotes", note);
+    setAllNotes(note) {
+      debugger;
+      this.$store.dispatch("setAllNotes", note);
     }
     // this.$store.dispatch("createNote", note);
     // this.content = "";
