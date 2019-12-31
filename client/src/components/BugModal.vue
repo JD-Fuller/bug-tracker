@@ -57,8 +57,8 @@
                 >
               </div>
               <router-link style="padding-right: 15px" to="/bugs/:id">
-                <button type="submit" class="btn btn-danger">
-                  Log Bug:
+                <button type="submit" class="fas fa-plus">
+                  Bug:
                 </button>
               </router-link>
             </div>

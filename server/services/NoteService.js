@@ -18,8 +18,9 @@ class NoteService {
   // async getNoteByBugId(bugId) {
   //   return await _repository.findById({ bugId: bugId });
   // }
-  async getNotesByBugId(id) {
-    return await _repository.findById({ _id: id });
+  async getNotesByBugId(bug) {
+    return await _repository.find({ bug: bug });
+    //changed to find instead of findbyid
   }
   async create(rawData) {
     let data = await _repository.create(rawData);

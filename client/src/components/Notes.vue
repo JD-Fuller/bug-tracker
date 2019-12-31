@@ -39,7 +39,7 @@
 <script>
 export default {
   name: "Notes",
-  props: ["note", "notes"],
+  // props: ["note", "notes"],
   data() {
     return {
       newNote: {
@@ -64,20 +64,21 @@ export default {
         bug: this.$route.params.id
       };
       debugger;
+      console.log("notes.vue A Note was created in the notes.vue");
     },
     setAllNotes(note) {
       debugger;
       this.$store.dispatch("setAllNotes", note);
-    },
-    computed: {
-      notes() {
-        return this.$store.state.notes;
-      }
     }
-    // this.$store.dispatch("createNote", note);
-    // this.content = "";
-    // this.reportedBy = "";
+  },
+  computed: {
+    notes() {
+      return this.$store.notes;
+    }
   }
+  // this.$store.dispatch("createNote", note);
+  // this.content = "";
+  // this.reportedBy = "";
 };
 </script>
 

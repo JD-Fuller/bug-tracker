@@ -11,8 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="note" v-for="note in notes" :key="note._id"></tr>
-        <tr>
+        <tr class="table" v-for="note in notes" :key="note.bug">
           <!-- <th scope="row">#</th> -->
           <td>{{ note.content }}</td>
           <td>{{ note.reportedBy }}</td>
@@ -28,7 +27,8 @@ export default {
   name: "NoteList",
   data() {
     return {
-      note: "",
+      content: "",
+      reportedBy: "",
       createdAt: ""
     };
   },
@@ -36,20 +36,21 @@ export default {
     //Confirmed this mounted is working - gtg
     debugger;
     return this.$store.dispatch("getNotesByBugId", this.$route.params.id);
-    debugger;
-    return this.$store.state.notes;
+    // return this.$store.dispatch("getNotesById", this.$route.params.id);
+    // debugger;
+    // return this.$store.state.notes;
   },
   methods: {
-    setActiveNote() {
+    setAllNotes() {
       debugger;
-      this.$store.dispatch("setActiveNotes"), this.$route.params.id;
+      this.$store.dispatch("setAllNotes"), this.$route.params.id;
     }
   },
   computed: {
-    activeNotes() {
-      debugger;
-      return this.$store.state.activeNotes;
-    },
+    // activeNotes() {
+    //   debugger;
+    //   return this.$store.state.activeNotes;
+    // },
     notes() {
       debugger;
       return this.$store.state.notes;

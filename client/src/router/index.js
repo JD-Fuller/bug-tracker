@@ -31,7 +31,7 @@ const routes = [
     component: BugDetails
   },
   {
-    path: "/bugs/:id/notes/:id",
+    path: "/notes/:id",
     name: "editNotes",
     component: BugDetails
   },

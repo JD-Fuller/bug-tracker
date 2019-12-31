@@ -24,6 +24,7 @@ export default new Vuex.Store({
   mutations: {
     setAllBugs(state, data) {
       state.bugs = data;
+      console.log("setAllBugs in store", data);
     },
     addBug(state, bug) {
       debugger;
@@ -82,6 +83,11 @@ export default new Vuex.Store({
       let res = await _api.get("bugs/" + id + "/notes");
       commit("setActiveNotes", res.data);
     },
+    async setAllNotes({ commit, dispatch }, id) {
+      debugger;
+      let res = await _api.get("bugs/" + id + "/notes");
+      commit("setAllNotes", res.data);
+    },
 
     async getNotes({ commit, dispatch }) {
       debugger;
@@ -94,6 +100,7 @@ export default new Vuex.Store({
     },
     async getNotesByBugId({ commit, dispatch }, id) {
       let res = await _api.get("bugs/" + id + "/notes");
+      debugger;
       commit("setAllNotes", res.data);
     },
     async getNotesById({ commit, dispatch }, id) {

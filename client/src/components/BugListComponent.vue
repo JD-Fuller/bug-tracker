@@ -12,14 +12,15 @@
       </thead>
       <tbody>
         <tr class="table" v-for="bug in bugs" :key="bug._id">
+          ><router-view />
           <router-link
             :to="{ name: 'bugs', params: { id: bug._id } }"
             debugger
             v-on:click="setActiveBug(bug._id) + setAllNotes(bug._id)"
-            style="padding-right: 15px"
-          >
+            style="padding-right: 15px"/>
             <!-- The bugs below are coming from computed: bugs() -->
-            <!-- <th scope="row">#</th> -->
+
+            <th scope="row">#</th>
             <td>{{ bug.title }}</td>
             <td>{{ bug.reportedBy }}</td>
             <td>{{ bug.closed }}</td>
@@ -43,6 +44,7 @@ export default {
   mounted() {
     debugger;
     return this.$store.dispatch("getBugs");
+    console.log("buglistcomponent - mounted getBugs");
   },
   methods: {
     setActiveBug() {
