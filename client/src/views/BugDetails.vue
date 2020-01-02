@@ -3,7 +3,7 @@
     <!-- <div v-if="loading" class="loading">Loading...</div> -->
     <!-- <div v-if="error" class="error">{{ error }}</div> -->
 
-    <div v-if="activeBug" class="content">
+    <div v-if="liveBug" class="content">
       <div class="row" style="padding-bottom: 3rem;">
         <div
           class="col header-text"
@@ -30,19 +30,19 @@
               </editModal>
             </div>
 
-            <h1 style="text-align: left;">Bug: {{ activeBug.title }}</h1>
+            <h1 style="text-align: left;">Bug: {{ liveBug.title }}</h1>
 
             <h2 style="text-align: left;">
-              Reported By: {{ activeBug.reportedBy }}
+              Reported By: {{ liveBug.reportedBy }}
             </h2>
-            <h2 style="text-align: left;">Status: {{ activeBug.closed }}</h2>
+            <h2 style="text-align: left;">Status: {{ liveBug.closed }}</h2>
             <h2 style="text-align: left;">Description:</h2>
 
             <textarea
               rows="4"
               cols="80"
               style="text-align: left; justify-content: left; align-items: left;"
-              v-model="activeBug.description"
+              v-model="liveBug.description"
               placeholder="Bug details..."
             ></textarea>
           </div>
@@ -120,16 +120,16 @@ export default {
     console.log("from bugdetails - mounted");
   },
   computed: {
-    liveBugs() {
+    liveBug() {
       return this.$store.state.activeBug;
-    },
-    activeBug() {
-      return this.$store.state.activeBug;
-    },
-    status() {
-      //TODO change to activeNotes
-      return this.$store.state.activeNote;
     }
+    // activeBug() {
+    //   return this.$store.state.activeBug;
+    // },
+    // status() {
+    //   //TODO change to activeNotes
+    //   return this.$store.state.activeNote;
+    // }
   },
   components: {
     // ActiveBug,

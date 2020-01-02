@@ -57,11 +57,20 @@
                   >Add bug description</small
                 >
               </div>
-              <router-link to="bugs/:id">
-                <button v-on:click="onSubmit" type="submit" class="fas fa-plus">
-                  Bug:
-                </button>
-              </router-link>
+              <div>
+                <h4>router section</h4>
+                <h5>{$router.params.id}</h5>
+                <router-link to="bugs/:id">
+                  <button
+                    v-on:click="onSubmit"
+                    type="submit"
+                    class="fas fa-plus"
+                  >
+                    Bug:
+                  </button>
+                </router-link>
+                <router-view></router-view>
+              </div>
             </div>
           </form>
           <!-- <slot></slot> -->
