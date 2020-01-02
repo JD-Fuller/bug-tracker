@@ -1,9 +1,17 @@
 <template>
-  <div class="table-responsive">
-    <table class="table table-striped table-borderless table-hover">
+  <div class="table-responsive shadow" id="bug-table">
+    <input
+      type="text"
+      id="bugFilter"
+      v-model="search"
+      placeholder="Add filter criteria..."
+    />
+    <table
+      class="table table-striped table-borderless table-hover"
+      id="bugTable"
+    >
       <thead class="thead-light">
         <tr>
-          <!-- <th scope="col">1</th> -->
           <th scope="col" style="text-align: left;">Title</th>
           <th scope="col">Reported By</th>
           <th scope="col">Status</th>
@@ -12,21 +20,16 @@
       </thead>
       <tbody>
         <tr class="table" v-for="bug in bugs" :key="bug._id">
-          ><router-view />
           <router-link
             :to="{ name: 'bugs', params: { id: bug._id } }"
-            debugger
             v-on:click="setActiveBug(bug._id) + setAllNotes(bug._id)"
-            style="padding-right: 15px"/>
-            <!-- The bugs below are coming from computed: bugs() -->
-
-            <th scope="row">#</th>
-            <td>{{ bug.title }}</td>
-            <td>{{ bug.reportedBy }}</td>
-            <td>{{ bug.closed }}</td>
-            <td>{{ bug.updatedAt | formatDate }}</td>
+          >
+            <td style="text-align: left;">{{ bug.title }}</td>
           </router-link>
-          <router-view />
+          <td>{{ bug.reportedBy }}</td>
+          <td class="status">{{ bug.closed }}</td>
+          <td>{{ bug.updatedAt | formatDate }}</td>
+          <!-- <router-view /> -->
         </tr>
       </tbody>
     </table>
@@ -38,11 +41,11 @@ export default {
   name: "BugList",
   data() {
     return {
+      search: "",
       updatedAt: ""
     };
   },
   mounted() {
-    debugger;
     return this.$store.dispatch("getBugs");
     console.log("buglistcomponent - mounted getBugs");
   },
@@ -59,7 +62,6 @@ export default {
   computed: {
     // Returns all bugs to the list
     bugs() {
-      debugger;
       return this.$store.state.bugs;
     },
     status(bug) {
@@ -76,6 +78,31 @@ export default {
       // } else {
       //   return "Open";
       // }
+    },
+    filterTable() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("bugFilter");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("bugTable");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textcontent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = ";";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
+
+    closedStatus() {
+      var classClosed = "status";
+      var color;
+      var status = document.getElementsByClassName();
     }
   }
 };
@@ -94,5 +121,18 @@ img {
 }
 table {
   text-align: end;
+}
+.status {
+  color: red;
+  font-variant-caps: all-small-caps;
+}
+
+#bugFilter {
+  width: 100%;
+  font-size: 16px;
+}
+#bugTable {
+  border-collapse: collapse;
+  width: 100%;
 }
 </style>

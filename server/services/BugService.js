@@ -29,12 +29,13 @@ class BugService {
     return data;
   }
   async delete(id) {
+    debugger;
     let data = await _repository.findOneAndUpdate(
       { _id: id },
       { closed: true }
     );
     if (!data) {
-      throw new ApiError("Invalid ID", 400);
+      throw new ApiError("Invalid ID or Bug is already closed", 400);
     }
   }
 }

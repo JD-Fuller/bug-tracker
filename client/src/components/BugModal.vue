@@ -87,6 +87,7 @@ export default {
   methods: {
     addBug() {
       let bug = { ...this.newBug };
+      debugger;
       this.$store.dispatch("createBug", bug);
       this.newBug = {
         description: "",

@@ -1,31 +1,29 @@
 <template>
-  <div class="activeBug table-responsive">
+  <div class="activeBug table-responsive shadow">
     <table class="table table-striped table-borderless table-hover">
       <thead class="thead-light">
         <tr>
           <!-- <th scope="col">1</th> -->
           <th scope="col" style="text-align: left;">Title</th>
-          <th scope="col">Reported By</th>
-          <th scope="col">Status</th>
-          <th scope="col">Date Created</th>
-          <th scope="col">Last Modified</th>
+          <th scope="col">Reported By: {{ activeBugData.reportedBy }}</th>
+          <th scope="col">Status: {{ activeBugData.closed }}</th>
+          <th scope="col">Date Created: {{ activeBugData.createdAt }}</th>
+          <th scope="col">Last Modified: {{ activeBugData.updatedAt }}</th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="table" v-for="activebug in activebugs" :key="activebug._id">
+      <!-- <tbody>
+        <tr>
           <router-link
-            :to="{ name: 'bugs', params: { id: activebug._id } }"
-            v-on:click="setActiveNote(activebug._id)"
-            style="padding-right: 15px"
+            :to="{ name: 'bugs', params: { id: this.$route.params.id } }"
           >
-            <td>{{ bug.title }}</td>
-            <td>{{ bug.reportedBy }}</td>
-            <td>{{ bug.closed }}</td>
-            <td>{{ bug.updatedAt | formatDate }}</td>
+            
+            <td>{{ activeBugData.title }}</td>
+            <td>{{ activeBugData.reportedBy }}</td>
+            <td>{{ activeBugData.closed }}</td>
+            <td>{{ activeBugData.updatedAt | formatDate }}</td>
           </router-link>
-          <router-view />
         </tr>
-      </tbody>
+      </tbody> -->
     </table>
   </div>
 </template>
@@ -33,39 +31,43 @@
 <script>
 export default {
   name: "ActiveBug",
-  props: ["activeBugs", "bugs", "activebugs"],
-  data() {
-    return {
-      activeBug: {
-        title: "",
-        reportedBy: "",
-        closed: "",
-        updatedAt: ""
-      }
-    };
-  },
+  props: ["activeBugData"],
+  // data() {
+  //   return {
+  //     bug: {
+  //       // title: "",
+  //       // reportedBy: "",
+  //       // closed: "",
+  //       updatedAt: ""
+  //     }
+  //   };
+  // },
+
   mounted() {
     // Checks out in the debugger - this mounted is GTG
-    this.$store.dispatch("getActiveBug", this.$route.params.id);
+    // debugger;
+    // this.$store.dispatch("getActiveBug", this.$route.params.id);
+    // console.log("from activebug");
   },
   methods: {
-    addNote() {
-      let note = { ...this.newNote };
-      this.$store.dispatch("createNote", note);
-      this.newNote = {
-        content: "",
-        reportedBy: "" //The provided name for who made the note
-      };
-      console.log("a new note was created");
-    },
-    setActiveNote(note) {
-      this.$store.dispatch("setActiveNote", note);
-    }
+    // addNote() {
+    //   let note = { ...this.newNote };
+    //   this.$store.dispatch("createNote", note);
+    //   this.newNote = {
+    //     content: "",
+    //     reportedBy: "" //The provided name for who made the note
+    //   };
+    //   console.log("a new note was created");
+    // },
+    // setActiveNote(note) {
+    //   debugger;
+    //   this.$store.dispatch("setActiveNote", note);
+    // }
   },
   computed: {
-    bug() {
-      return this.$store.state.activebugs;
-    },
+    // bug() {
+    //   return this.$store.state.activebug;
+    // },
     // activeBug() {
     //   return this.$store.state.activeBug;
     // },

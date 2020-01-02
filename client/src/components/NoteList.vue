@@ -1,21 +1,26 @@
 <template>
-  <div class="table-responsive">
+  <div class="table-responsive shadow" style="margin-top: 2rem;">
     <table class="table table-striped table-borderless table-hover">
       <thead class="thead-light">
         <tr>
           <!-- <th scope="col">1</th> -->
           <th scope="col" style="text-align: left;">Comment</th>
-          <th scope="col">Name</th>
-          <th scope="col">Status</th>
-          <th scope="col">Last Modified</th>
+          <th scope="col" style="text-align: left;">Name</th>
+          <th scope="col" style="text-align: center;">Last Modified</th>
+          <th scope="col" style="text-align: center;">Close Bug</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table" v-for="note in notes" :key="note.bug">
+        <tr class="table " v-for="note in notes" :key="note.bug">
           <!-- <th scope="row">#</th> -->
-          <td>{{ note.content }}</td>
-          <td>{{ note.reportedBy }}</td>
-          <td>{{ note.createdAt | formatDate }}</td>
+          <td style="text-align: left;">{{ note.content }}</td>
+          <td style="text-align: left;">{{ note.reportedBy }}</td>
+          <td style="text-align: center;">{{ note.createdAt | formatDate }}</td>
+          <td style="text-align: center;">
+            <button class="btn btn-warning" type="submit">
+              <i class="fa fa-arrow-circle-right fa-lg"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -34,7 +39,6 @@ export default {
   },
   mounted() {
     //Confirmed this mounted is working - gtg
-    debugger;
     return this.$store.dispatch("getNotesByBugId", this.$route.params.id);
     // return this.$store.dispatch("getNotesById", this.$route.params.id);
     // debugger;
@@ -42,7 +46,6 @@ export default {
   },
   methods: {
     setAllNotes() {
-      debugger;
       this.$store.dispatch("setAllNotes"), this.$route.params.id;
     }
   },
@@ -52,7 +55,6 @@ export default {
     //   return this.$store.state.activeNotes;
     // },
     notes() {
-      debugger;
       return this.$store.state.notes;
     }
 

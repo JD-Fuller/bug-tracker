@@ -5,27 +5,27 @@
         class="col header-text"
         style="min-height: 5vh; font: all-small-caps bold 2em;"
       >
-        Active B <img alt="Vue logo" src="../assets/logo.png" />G View
-      </div>
-      <div class="col buttons">
-        <button
-          class="fas fa-edit"
-          data-toggle="modal"
-          data-target="#one"
-        ></button>
-        <BugModal id="one">
-          <div slot="title"></div>
-        </BugModal>
+        Active Bug <img alt="Vue logo" src="../assets/logo.png" />iew
       </div>
     </div>
     <div class="row">
       <div class="bugdetail col ml-5">
-        <div style="margin-bottom: 2rem; background-color: #f0f2f3;">
-          <button
-            class="fas fa-edit"
-            style="float: right; font-size: 2em; border-style: none; background-color: #f0f2f3"
-            type="submit"
-          ></button>
+        <div
+          class="shadow"
+          style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
+        >
+          <div class="button">
+            <button
+              class="fas fa-edit"
+              data-toggle="modal"
+              data-target="#editBug"
+              style="float: right; font-size: 2em; border-style: none; background-color: #f0f2f3"
+            ></button>
+            <editModal id="editBug">
+              <div slot="title">Edit Bug</div>
+            </editModal>
+          </div>
+
           <h1 style="text-align: left;">Bug: {{ activeBug.title }}</h1>
 
           <h2 style="text-align: left;">
@@ -35,9 +35,9 @@
           <h2 style="text-align: left;">Description:</h2>
 
           <textarea
-            rows="5"
-            cols="100"
-            style="text-align: left;"
+            rows="4"
+            cols="80"
+            style="text-align: left; justify-content: left; align-items: left;"
             v-model="activeBug.description"
             placeholder="Bug details..."
           ></textarea>
@@ -57,28 +57,41 @@
         <noteList />
       </div>
     </div>
+    <!-- <div class="row liveBugs">
+      <div class="col-10" v-for="liveBug in liveBugs" :key="liveBug.id">
+        <activeBug :activeBugData="liveBug" />
+      </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 // import ActiveBug from "@/components/ActiveBug";
+import EditModal from "@/components/EditBugModal";
 import BugModal from "@/components/BugModal";
 import Notes from "@/components/Notes";
 import NoteList from "@/components/NoteList";
+import ActiveBug from "@/components/ActiveBug";
 
 export default {
   name: "bugDetail",
   data() {
     return {
-      notes: ""
+      notes: "",
+      editModal: {}
     };
   },
   props: ["bugs", "bug", "bugDetails", "activeBugs", "notelist"],
   mounted() {
-    return this.$store.dispatch("getActiveBug", this.$route.params.id);
+    this.$store.dispatch("getActiveBug", this.$route.params.id);
+
+    // return this.$store.dispatch("getActiveBug", this.$route.params.id);
     console.log("from bugdetails - mounted");
   },
   computed: {
+    liveBugs() {
+      return this.$store.state.activeBug;
+    },
     activeBug() {
       return this.$store.state.activeBug;
     },
@@ -91,7 +104,9 @@ export default {
     // ActiveBug,
     BugModal,
     Notes,
-    NoteList
+    NoteList,
+    ActiveBug,
+    EditModal
   }
 };
 </script>

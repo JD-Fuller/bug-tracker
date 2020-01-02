@@ -5,11 +5,12 @@
         class="col header-text"
         style="min-height: 5vh; font: all-small-caps bold 2em;"
       >
-        B
-        <img alt="Vue logo" src="../assets/logo.png" />G Tracker View
+        BUG Tracker
+        <img alt="Vue logo" src="../assets/logo.png" />iew
       </div>
+
       <div class="col buttons">
-        <button class="btn btn-danger" data-toggle="modal" data-target="#one">
+        <button class="btn btn-success" data-toggle="modal" data-target="#one">
           <i class="fas fa-plus"></i>
           BUG
         </button>
@@ -19,6 +20,7 @@
         </BugModal>
       </div>
     </div>
+
     <!-- <div class="row">
       <div class="col addbug">
         <addBug />

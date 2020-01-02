@@ -18,7 +18,7 @@
         </div>
         <div class="modal-body">
           <!-- slot added for input -->
-          <form @submit.prevent="addBug() && setActiveBug()">
+          <form @submit.prevent="editBug() && setActiveBug()">
             <div class="col form-group" style="text-align: left;">
               <div class="form-group">
                 <input
@@ -56,10 +56,17 @@
                   >Add bug description</small
                 >
               </div>
-
-              <button type="submit" class="btn btn-danger">
-                Save Changes
-              </button>
+              <router-link to="/bugs/:id">
+                <button
+                  @submit.prevent="editBug()"
+                  class="btn-warning"
+                  style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
+                  type="submit"
+                >
+                  <i class="fas fa-edit"> </i>
+                  Save Changes
+                </button>
+              </router-link>
             </div>
           </form>
           <!-- <slot></slot> -->
@@ -81,12 +88,14 @@ export default {
         reportedBy: ""
       }
     };
-    console.log("from data() in addbug.vue", this.store.state.bugs);
   },
+
   methods: {
-    setBug() {
+    editBug() {
+      debugger;
       let bug = { ...this.editedBug };
-      this.$store.dispatch("createBug", bug);
+      debugger;
+      this.$store.dispatch("editBug", bug);
       this.editedBug = {
         description: "",
         title: "",
