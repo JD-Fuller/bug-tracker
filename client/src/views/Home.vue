@@ -37,7 +37,7 @@
 
 <script>
 // @ is an alias to /src
-import AddBug from "@/components/AddBug";
+// import AddBug from "@/components/AddBug";
 import BugList from "@/components/BugListComponent";
 import BugModal from "@/components/BugModal";
 
@@ -48,7 +48,7 @@ export default {
     return this.$store.dispatch("getBugs");
   },
   components: {
-    AddBug,
+    // AddBug,
     BugList,
     BugModal
   },

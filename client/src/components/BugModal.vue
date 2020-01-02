@@ -7,6 +7,7 @@
             <!-- slot added for input, named slot -->
             <slot name="title"></slot>
           </h5>
+
           <button
             type="button"
             class="close"
@@ -18,7 +19,7 @@
         </div>
         <div class="modal-body">
           <!-- slot added for input -->
-          <form @submit.prevent="addBug() && setActiveBug()">
+          <form>
             <div class="col form-group" style="text-align: left;">
               <div class="form-group">
                 <input
@@ -56,8 +57,8 @@
                   >Add bug description</small
                 >
               </div>
-              <router-link style="padding-right: 15px" to="/bugs/:id">
-                <button type="submit" class="fas fa-plus">
+              <router-link to="bugs/:id">
+                <button v-on:click="onSubmit" type="submit" class="fas fa-plus">
                   Bug:
                 </button>
               </router-link>
@@ -85,20 +86,35 @@ export default {
     console.log("from data() in addbug.vue", this.store.state.bugs);
   },
   methods: {
-    addBug() {
-      let bug = { ...this.newBug };
+    onSubmit() {
+      // }
+      // addBug() {
       debugger;
+      this.$store.state.activeBug = {};
+      let bug = { ...this.newBug };
       this.$store.dispatch("createBug", bug);
+      debugger;
+      // .then(this.$store.dispatch("setActiveBug", bug))
+      // .then(this.$router.push("bugs"));
       this.newBug = {
         description: "",
         title: "",
         reportedBy: ""
       };
+      // this.$router.push("/bugs/:id");
       console.log("A bug was created in the addbug.vue");
+      // },
+      // setActiveBug(bug) {
+      //   this.$store.dispatch("setActiveBug", bug);
+      // }
     },
-    setActiveBug(bug) {
-      this.$store.dispatch("setActiveBug", bug);
+    setActiveBug() {
+      debugger;
+      this.$store.dispatch("setActiveBug"), this.$route.params.id;
     }
+    // emitRoute(){
+    //   this.$router.push('bugs');
+    // }
   },
   computed: {
     confirmation() {
@@ -106,10 +122,15 @@ export default {
     },
     bugs() {
       return this.$store.state.bugs;
+    },
+    activeBug() {
+      return this.$store.state.activeBug;
     }
   },
   props: ["id"]
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* :to="{ name: 'bugs', params: { id: activeBug._id } }" */
+</style>

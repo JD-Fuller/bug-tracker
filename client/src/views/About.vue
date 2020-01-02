@@ -3,7 +3,9 @@
     <h1>This is an about page</h1>
     <div class="row justify-content-center">
       <!-- brought back title withe named slot property, same modal, simple styling -->
-      <button class="btn btn-danger" data-toggle="modal" data-target="#three">Modal three</button>
+      <button class="btn btn-danger" data-toggle="modal" data-target="#three">
+        Modal three
+      </button>
       <BugModal id="three">
         <div slot="title" class="modalThree">
           <i class="fas fa-dragon mr-3"></i>I brought back the title!
@@ -11,7 +13,12 @@
         <h5>Same modal, even more stuff</h5>
         <br />
         <!-- added an input to the modal layout -->
-        <input class="mt-5" type="text" placeholder="Input field?.. what the..." v-model="message" />
+        <input
+          class="mt-5"
+          type="text"
+          placeholder="Input field?.. what the..."
+          v-model="message"
+        />
       </BugModal>
     </div>
     <div>
@@ -19,7 +26,9 @@
     </div>
     <h2>Not ANOTHER modal!!</h2>
     <div class="row justify-content-center">
-      <button class="btn btn-info" data-toggle="modal" data-target="#four">Modal four</button>
+      <button class="btn btn-info" data-toggle="modal" data-target="#four">
+        Modal four
+      </button>
       <!-- bringing in modal again, adding title and a card to it -->
       <BugModal id="four">
         <div slot="title">
@@ -53,7 +62,6 @@ export default {
   components: { BugModal }
 };
 </script>
-
 
 <style scoped>
 .modalThree {

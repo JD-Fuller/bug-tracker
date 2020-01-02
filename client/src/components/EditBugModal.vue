@@ -58,12 +58,11 @@
               </div>
               <router-link to="/bugs/:id">
                 <button
-                  @submit.prevent="editBug()"
                   class="btn-warning"
                   style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
                   type="submit"
                 >
-                  <i class="fas fa-edit"> </i>
+                  <i class="fas fa-edit"></i>
                   Save Changes
                 </button>
               </router-link>
