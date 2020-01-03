@@ -9,7 +9,7 @@
         <img alt="Vue logo" src="../assets/logo.png" />iew
       </div>
 
-      <div class="col buttons">
+      <!-- <div class="col buttons">
         <button class="btn btn-success" data-toggle="modal" data-target="#one">
           <i class="fas fa-plus"></i>
           BUG
@@ -18,16 +18,26 @@
           <div slot="title">Add Bug</div>
           Bug Form
         </BugModal>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col">
+        <div
+          class="shadow"
+          style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left; width: 100%;"
+        >
+          <h1
+            style="font-family: arial; font-variant: all-small-caps; text-align: left; font-size: 4rem;"
+          >
+            Log Bug
+          </h1>
+          <addBug />
+        </div>
       </div>
     </div>
-
-    <!-- <div class="row">
-      <div class="col addbug">
-        <addBug />
-      </div>
-    </div>-->
     <div class="row">
       <div class="buglist ml-5">
+        <hr />
         <h2 style="text-align: left;">Open Bugs:{{ confirmation }}</h2>
         <bugList v-bind:bugs="bugs" />
       </div>
@@ -37,7 +47,7 @@
 
 <script>
 // @ is an alias to /src
-// import AddBug from "@/components/AddBug";
+import AddBug from "@/components/AddBug";
 import BugList from "@/components/BugListComponent";
 import BugModal from "@/components/BugModal";
 
@@ -48,7 +58,7 @@ export default {
     return this.$store.dispatch("getBugs");
   },
   components: {
-    // AddBug,
+    AddBug,
     BugList,
     BugModal
   },

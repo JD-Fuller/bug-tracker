@@ -7,7 +7,6 @@
             <!-- slot added for input, named slot -->
             <slot name="title"></slot>
           </h5>
-
           <button
             type="button"
             class="close"
@@ -58,8 +57,6 @@
                 >
               </div>
               <div>
-                <h4>router section</h4>
-                <h5>{$router.params.id}</h5>
                 <router-link to="bugs/:id">
                   <button
                     v-on:click="onSubmit"
@@ -96,10 +93,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      // }
-      // addBug() {
       debugger;
-      this.$store.state.activeBug = {};
+      // this.$store.state.activeBug = {};
       let bug = { ...this.newBug };
       this.$store.dispatch("createBug", bug);
       debugger;

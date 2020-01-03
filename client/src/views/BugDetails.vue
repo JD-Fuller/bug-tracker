@@ -13,22 +13,28 @@
         </div>
       </div>
       <div class="row">
-        <div class="bugdetail col ml-5">
+        <div class="bugdetail col-12">
           <div
             class="shadow"
-            style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
+            style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left; width: 100%;"
           >
-            <div class="button">
+            <button
+              class="btn-danger"
+              style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
+              type="submit"
+            >
+              <i class="fas fa-trash-alt"> </i>
+              Delete Bug
+            </button>
+            <!--Former EDIT BUTTON-->
+            <!-- <div class="button">
               <button
                 class="fas fa-edit"
                 data-toggle="modal"
                 data-target="#editBug"
                 style="float: right; font-size: 2em; border-style: none; background-color: #f0f2f3"
               ></button>
-              <editModal id="editBug">
-                <div slot="title">Edit Bug</div>
-              </editModal>
-            </div>
+            </div> -->
 
             <h1 style="text-align: left;">Bug: {{ liveBug.title }}</h1>
 
@@ -45,6 +51,17 @@
               v-model="liveBug.description"
               placeholder="Bug details..."
             ></textarea>
+          </div>
+          <!-- <div class="row"> -->
+            <div
+              class="col-12 shadow"
+              style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
+            >
+              <h1 style="font-variant: all-small-caps">Edit Bug</h1>
+              <editModal id="editBug">
+                <div slot="title">Edit Bug</div>
+              </editModal>
+            </div>
           </div>
 
           <!-- <bugDetails v-bind:activeBug="activeBug" /> -->

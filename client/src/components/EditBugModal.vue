@@ -1,79 +1,54 @@
 <template>
-  <div class="modal" :id="id" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">
-            <!-- slot added for input, named slot -->
-            <slot name="title"></slot>
-          </h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- slot added for input -->
-          <form @submit.prevent="editBug">
-            <div class="col form-group" style="text-align: left;">
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="name"
-                  id
-                  placeholder="Name"
-                  v-model="editedBug.reportedBy"
-                />
-                <small id="nameHelp" class="form-text text-muted"
-                  >Add Full Name</small
-                >
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="title"
-                  id
-                  placeholder="Title"
-                  v-model="editedBug.title"
-                />
-                <small id="titleHelp" class="form-text text-muted"
-                  >Main bug title or issue</small
-                >
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="description"
-                  id
-                  placeholder="Description"
-                  v-model="editedBug.description"
-                />
-                <small id="descriptionHelp" class="form-text text-muted"
-                  >Add bug description</small
-                >
-              </div>
-              <!-- <router-link to="/bugs/:id"> -->
-              <button
-                class="btn-warning"
-                style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
-                type="submit"
-              >
-                <i class="fas fa-edit"></i>
-                Save Changes
-              </button>
-              <!-- </router-link> -->
-            </div>
-          </form>
-          <!-- <slot></slot> -->
-        </div>
-        <div class="modal-footer"></div>
+  <!-- slot added for input -->
+  <form @submit.prevent="editBug">
+    <div class="col-12 form-group" style="text-align: left;">
+      <button
+        class="btn-warning"
+        style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
+        v-on:click="editBug"
+      >
+        <i class="fas fa-edit"></i>
+        Save Changes
+      </button>
+      <div class="form-group">
+        <input
+          type="text"
+          name="name"
+          id
+          placeholder="Name"
+          v-model="editedBug.reportedBy"
+        />
+        <small id="nameHelp" class="form-text text-muted">Add Full Name</small>
       </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="title"
+          id
+          placeholder="Title"
+          v-model="editedBug.title"
+        />
+        <small id="titleHelp" class="form-text text-muted"
+          >Main bug title or issue</small
+        >
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="description"
+          id
+          placeholder="Description"
+          v-model="editedBug.description"
+        />
+        <small id="descriptionHelp" class="form-text text-muted"
+          >Add bug description</small
+        >
+      </div>
+      <!-- <router-link to="/bugs/:id"> -->
     </div>
-  </div>
+    <!-- </router-link> -->
+  </form>
+  <!-- <slot></slot> -->
 </template>
 
 <script>
@@ -100,7 +75,7 @@ export default {
         description: "",
         title: "",
         reportedBy: "",
-        id: this.$route.params.id
+        id: ""
       };
       console.log("A bug was created in the addbug.vue");
     },

@@ -1,4 +1,53 @@
-<template> </template>
+<template>
+  <form>
+    <div class="col form-group" style="text-align: left;">
+      <router-link to="bugs/:id">
+        <button
+          class="btn btn-success"
+          style="float: right;"
+          v-on:click="onSubmit"
+        >
+          <i class="fas fa-plus">BUG</i>
+        </button>
+      </router-link>
+      <router-view></router-view>
+      <div class="form-group">
+        <input
+          type="text"
+          name="name"
+          id
+          placeholder="Name"
+          v-model="newBug.reportedBy"
+        />
+        <small id="nameHelp" class="form-text text-muted">Add Full Name</small>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="title"
+          id
+          placeholder="Title"
+          v-model="newBug.title"
+        />
+        <small id="titleHelp" class="form-text text-muted"
+          >Main bug title or issue</small
+        >
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="description"
+          id
+          placeholder="Description"
+          v-model="newBug.description"
+        />
+        <small id="descriptionHelp" class="form-text text-muted"
+          >Add bug description</small
+        >
+      </div>
+    </div>
+  </form>
+</template>
 
 <script>
 export default {
@@ -17,7 +66,8 @@ export default {
     console.log("from data() in addbug.vue", this.store.state.bugs);
   },
   methods: {
-    addBug() {
+    onSubmit() {
+      this.$store.state.activeBug = {};
       let bug = { ...this.newBug };
       this.$store.dispatch("createBug", bug);
       this.newBug = {
@@ -27,8 +77,8 @@ export default {
       };
       console.log("A bug was created in the addbug.vue");
     },
-    setActiveBug(bug) {
-      this.$store.dispatch("setActiveBug", bug);
+    setActiveBug() {
+      this.$store.dispatch("setActiveBug"), this.$route.params.id;
     }
   },
   computed: {
