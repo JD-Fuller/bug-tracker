@@ -24,7 +24,6 @@ export default new Vuex.Store({
   mutations: {
     setAllBugs(state, data) {
       state.bugs = data;
-      console.log("setAllBugs in store", data);
     },
     addBug(state, bug) {
       state.bugs.push(bug);
@@ -50,6 +49,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getBugs({ commit, dispatch }) {
+      debugger;
       let res = await _api.get("bugs");
       commit("setAllBugs", res.data);
     },
@@ -64,10 +64,11 @@ export default new Vuex.Store({
       // debugger;
       // commit("setActiveBug", res.data);
     },
-    async editBug({ commit, dispatch }, id) {
+    async editBug({ commit, dispatch }, bug) {
       debugger;
-      let res = await _api.put("bugs/" + id);
-      commit("setAllBugs", res.data);
+      let res = await _api.put("bugs/" + bug.id, bug);
+      debugger;
+      commit("setActiveBug", res.data);
     },
     setActiveBug({ commit, dispatch }, bug) {
       commit("setActiveBug", bug);

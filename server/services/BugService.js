@@ -20,9 +20,14 @@ class BugService {
     return data;
   }
   async edit(id, update) {
-    let data = await _repository.findOneAndUpdate({ _id: id }, update, {
-      new: true
-    });
+    debugger;
+    let data = await _repository.findOneAndUpdate(
+      { _id: id, closed: "false" },
+      update,
+      {
+        new: true
+      }
+    );
     if (!data) {
       throw new ApiError("Invalid ID", 400);
     }
