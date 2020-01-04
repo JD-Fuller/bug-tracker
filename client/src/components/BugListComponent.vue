@@ -27,7 +27,8 @@
             <td style="text-align: left;">{{ bug.title }}</td>
           </router-link>
           <td>{{ bug.reportedBy }}</td>
-          <td class="status">{{ status }}</td>
+          <td class="open" v-if="bug.closed === false">Open</td>
+          <td class="closed" v-else>Closed</td>
           <td>{{ bug.updatedAt | formatDate }}</td>
           <!-- <router-view /> -->
         </tr>
@@ -46,17 +47,14 @@ export default {
     };
   },
   mounted() {
-    debugger;
-    return this.$store.dispatch("getBugs");
+    this.$store.dispatch("getBugs");
     console.log("buglistcomponent - mounted getBugs");
   },
   methods: {
     setActiveBug() {
-      debugger;
       this.$store.dispatch("setActiveBug"), this.$route.params.id;
     },
     setAllNotes() {
-      debugger;
       this.$store.dispatch("setAllNotes"), this.$route.params.id;
     }
   },
@@ -77,7 +75,6 @@ export default {
     // } else {
     //   return "Open";
     // }
-
     filterTable() {
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("bugFilter");
@@ -106,7 +103,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 header {
   background-color: rgb(134, 173, 173);
 }
@@ -133,5 +130,11 @@ table {
 #bugTable {
   border-collapse: collapse;
   width: 100%;
+}
+.open {
+  color: green;
+}
+.closed {
+  color: red;
 }
 </style>

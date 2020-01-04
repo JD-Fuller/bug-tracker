@@ -56,18 +56,15 @@ export default {
     createNote() {
       let note = { ...this.newNote };
       this.$store.dispatch("createNote", note);
-      debugger;
       //originally had this.content & this.reportedBy
       this.newNote = {
         content: "",
         reportedBy: "",
         bug: this.$route.params.id
       };
-      debugger;
       console.log("notes.vue A Note was created in the notes.vue");
     },
     setAllNotes(note) {
-      debugger;
       this.$store.dispatch("setAllNotes", note);
     }
   },

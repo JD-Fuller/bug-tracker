@@ -44,13 +44,17 @@ class BugService {
     }
   }
   async delete(id) {
-    let data = await _repository.findOneAndUpdate(
+    let data = await _repository.findByIdAndUpdate(
       { _id: id },
-      { closed: false }
+      { closed: true },
+      {
+        new: true
+      }
     );
     if (!data) {
       throw new ApiError("Invalid ID or Bug is already closed", 400);
     }
+    return data;
   }
 }
 

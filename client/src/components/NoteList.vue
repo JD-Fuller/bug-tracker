@@ -7,7 +7,7 @@
           <th scope="col" style="text-align: left;">Comment</th>
           <th scope="col" style="text-align: left;">Name</th>
           <th scope="col" style="text-align: center;">Last Modified</th>
-          <th scope="col" style="text-align: center;">Close Bug</th>
+          <th scope="col" style="text-align: center;">Close Note</th>
         </tr>
       </thead>
       <tbody>

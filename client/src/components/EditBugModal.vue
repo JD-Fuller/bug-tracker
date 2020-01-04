@@ -73,7 +73,6 @@ export default {
     editBug() {
       debugger;
       let bug = { ...this.editedBug };
-      debugger;
       this.$store.dispatch("editBug", bug);
       this.editedBug = {
         description: "",
@@ -96,6 +95,9 @@ export default {
     },
     activeBug() {
       return this.$store.state.activeBug;
+    },
+    status() {
+      return this.$store.state.activeBug.closed;
     }
   },
   props: ["id"]

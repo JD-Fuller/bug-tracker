@@ -30,7 +30,6 @@ export default new Vuex.Store({
       // state.activeBug = bug;
     },
     setActiveBug(state, bug) {
-      debugger;
       state.activeBug = bug;
     },
     setAllNotes(state, data) {
@@ -65,7 +64,6 @@ export default new Vuex.Store({
     async editBug({ commit, dispatch }, bug) {
       debugger;
       let res = await _api.put("bugs/" + bug.id, bug);
-      debugger;
       commit("setActiveBug", res.data);
       console.log("this is from the edit bug in the store");
     },
@@ -79,7 +77,7 @@ export default new Vuex.Store({
     },
     async closeBug({ commit, dispatch }, id) {
       let res = await _api.delete("bugs/" + id);
-      commit("setAllBugs", res.data);
+      commit("setActiveBug" && "setAllBugs", res.data);
     },
 
     //Begin Notes Section

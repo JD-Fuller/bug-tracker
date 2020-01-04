@@ -23,25 +23,19 @@
               style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
               v-on:click="deleteBug"
             >
-              <i class="fas fa-trash-alt"> </i>
+              <i class="fas fa-trash-alt"></i>
               Delete Bug
             </button>
-            <!--Former EDIT BUTTON-->
-            <!-- <div class="button">
-              <button
-                class="fas fa-edit"
-                data-toggle="modal"
-                data-target="#editBug"
-                style="float: right; font-size: 2em; border-style: none; background-color: #f0f2f3"
-              ></button>
-            </div> -->
-
             <h1 style="text-align: left;">Bug: {{ liveBug.title }}</h1>
 
             <h2 style="text-align: left;">
               Reported By: {{ liveBug.reportedBy }}
             </h2>
-            <h2 style="text-align: left;">Status: {{ this.status }}</h2>
+            <h2 style="text-align: left;">
+              Status:
+              <h2 class="open" v-if="liveBug.closed === false">Open</h2>
+              <h2 class="closed" v-else>Closed</h2>
+            </h2>
             <h2 style="text-align: left;">Description:</h2>
 
             <textarea
@@ -101,23 +95,14 @@ export default {
   },
   data() {
     return {
-      // loading: false,
-      // activeBug: null,
-      // error: null,
       notes: "",
       editModal: {}
     };
   },
-  // created() {
-  //   debugger;
-  //   this.fetchData();
-  // },
-  // watch: {
-  //   $route: "fetchData"
-  // },
+
   methods: {
     deleteBug() {
-      this.$store.dispatch("closeBug", this.$router.params.id);
+      this.$store.dispatch("closeBug", this.liveBug.id);
     }
   },
   props: ["bugs", "bug", "bugDetails", "activeBugs", "notelist"],
@@ -132,7 +117,6 @@ export default {
       return this.$store.state.activeBug;
     },
     status() {
-      debugger;
       if (this.$store.state.activeBug.closed === true) {
         return "Closed";
       } else {
