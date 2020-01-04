@@ -49,8 +49,8 @@ export default class BugController {
   }
   async edit(req, res, next) {
     try {
-      let data = await bugService.edit(req.params.id, req.body);
-      return res.data.send(data);
+      let data = await bugService.edit(req.body);
+      return res.send(data);
     } catch (error) {
       next(error);
     }

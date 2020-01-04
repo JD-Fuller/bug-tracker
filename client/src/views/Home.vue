@@ -65,6 +65,13 @@ export default {
   computed: {
     confirmation() {
       return this.$store.state.bugs.length;
+    },
+    status() {
+      if (this.$store.state.activeBug.closed === true) {
+        return "Closed";
+      } else {
+        return "Open";
+      }
     }
   }
 };

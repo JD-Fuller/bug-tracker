@@ -54,13 +54,17 @@
 <script>
 export default {
   name: "editbugmodal",
+  mounted() {
+    this.$store.dispatch("getActiveBug");
+  },
   data() {
     return {
       editedBug: {
         description: "",
         title: "",
         reportedBy: "",
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        closed: this.$route.params.closed
       }
     };
   },
@@ -74,10 +78,10 @@ export default {
       this.editedBug = {
         description: "",
         title: "",
-        reportedBy: "",
-        id: ""
+        reportedBy: ""
+        // id: this.$route.params.id
       };
-      console.log("A bug was created in the addbug.vue");
+      console.log("A bug was edited in the addbug.vue", this.editedBug);
     },
     setActiveBug(bug) {
       this.$store.dispatch("setActiveBug", bug);
@@ -89,6 +93,9 @@ export default {
     },
     bugs() {
       return this.$store.state.bugs;
+    },
+    activeBug() {
+      return this.$store.state.activeBug;
     }
   },
   props: ["id"]

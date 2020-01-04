@@ -27,7 +27,7 @@
             <td style="text-align: left;">{{ bug.title }}</td>
           </router-link>
           <td>{{ bug.reportedBy }}</td>
-          <td class="status">{{ bug.closed }}</td>
+          <td class="status">{{ status }}</td>
           <td>{{ bug.updatedAt | formatDate }}</td>
           <!-- <router-view /> -->
         </tr>
@@ -65,21 +65,19 @@ export default {
     bugs() {
       return this.$store.state.bugs;
     },
-    status(bug) {
-      debugger;
-      for (var closed in bug) {
-        if (closed != false) {
-          return "Open";
-        } else {
-          return "Closed Out";
-        }
+    status() {
+      if (this.$store.state.activeBug.closed === true) {
+        return "Closed";
+      } else {
+        return "Open";
       }
-      // if (this.$store.state.bugs.get("closed" != false)) {
-      //   return "Closed";
-      // } else {
-      //   return "Open";
-      // }
     },
+    // if (this.$store.state.bugs.get("closed" != false)) {
+    //   return "Closed";
+    // } else {
+    //   return "Open";
+    // }
+
     filterTable() {
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("bugFilter");

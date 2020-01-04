@@ -21,7 +21,7 @@
             <button
               class="btn-danger"
               style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
-              type="submit"
+              v-on:click="deleteBug"
             >
               <i class="fas fa-trash-alt"> </i>
               Delete Bug
@@ -41,7 +41,7 @@
             <h2 style="text-align: left;">
               Reported By: {{ liveBug.reportedBy }}
             </h2>
-            <h2 style="text-align: left;">Status: {{ liveBug.closed }}</h2>
+            <h2 style="text-align: left;">Status: {{ this.status }}</h2>
             <h2 style="text-align: left;">Description:</h2>
 
             <textarea
@@ -53,38 +53,36 @@
             ></textarea>
           </div>
           <!-- <div class="row"> -->
-            <div
-              class="col-12 shadow"
-              style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
-            >
-              <h1 style="font-variant: all-small-caps">Edit Bug</h1>
-              <editModal id="editBug">
-                <div slot="title">Edit Bug</div>
-              </editModal>
-            </div>
+          <div
+            class="col-12 shadow"
+            style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
+          >
+            <h1 style="font-variant: all-small-caps">Edit Bug</h1>
+            <editModal id="editBug">
+              <div slot="title">Edit Bug</div>
+            </editModal>
           </div>
-
-          <!-- <bugDetails v-bind:activeBug="activeBug" /> -->
-
-          <!--  This adds the table header to the screen -- coming from mounted-->
-          <!-- <activeBug v-bind:activeBug="activeBug" /> -->
-          <!-- {{ activeBug.title }}{{ activeBug.reportedBy }} -->
-          <!-- {{ notes }} -->
-
-          <!-- Adds Note input field from Components/notes -->
-          <notes />
-          <!-- {{ notelist }}
-        <notelist /> -->
-          <noteList />
         </div>
+
+        <!-- <bugDetails v-bind:activeBug="activeBug" /> -->
+
+        <!--  This adds the table header to the screen -- coming from mounted-->
+        <!-- <activeBug v-bind:activeBug="activeBug" /> -->
+        <!-- {{ activeBug.title }}{{ activeBug.reportedBy }} -->
+        <!-- {{ notes }} -->
+
+        <!-- Adds Note input field from Components/notes -->
+        <notes />
+        <!-- {{ notelist }}
+        <notelist /> -->
+        <noteList />
       </div>
-      <!-- <div class="row liveBugs">
+    </div>
+    <!-- <div class="row liveBugs">
       <div class="col-10" v-for="liveBug in liveBugs" :key="liveBug.id">
         <activeBug :activeBugData="liveBug" />
       </div>
     </!-->
-      -->
-    </div>
   </div>
 </template>
 
@@ -98,6 +96,9 @@ import NoteList from "@/components/NoteList";
 
 export default {
   name: "bugDetail",
+  mounted() {
+    this.$store.dispatch("getActiveBug");
+  },
   data() {
     return {
       // loading: false,
@@ -114,21 +115,11 @@ export default {
   // watch: {
   //   $route: "fetchData"
   // },
-  // methods: {
-  //   fetchData() {
-  //     debugger;
-  //     this.error = this.activeBug = null;
-  //     this.loading = true;
-  //     this.liveBugs(this.$route.params.id, (err, activeBug) => {
-  //       this.loading = false;
-  //       if (err) {
-  //         this.error = err.toString();
-  //       } else {
-  //         this.activeBug = activeBug;
-  //       }
-  //     });
-  //   }
-  // },
+  methods: {
+    deleteBug() {
+      this.$store.dispatch("closeBug", this.$router.params.id);
+    }
+  },
   props: ["bugs", "bug", "bugDetails", "activeBugs", "notelist"],
   mounted() {
     this.$store.dispatch("getActiveBug", this.$route.params.id);
@@ -139,6 +130,14 @@ export default {
   computed: {
     liveBug() {
       return this.$store.state.activeBug;
+    },
+    status() {
+      debugger;
+      if (this.$store.state.activeBug.closed === true) {
+        return "Closed";
+      } else {
+        return "Open";
+      }
     }
     // activeBug() {
     //   return this.$store.state.activeBug;
