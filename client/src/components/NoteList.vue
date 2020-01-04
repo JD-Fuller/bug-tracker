@@ -17,7 +17,11 @@
           <td style="text-align: left;">{{ note.reportedBy }}</td>
           <td style="text-align: center;">{{ note.createdAt | formatDate }}</td>
           <td style="text-align: center;">
-            <button class="btn btn-warning" type="submit">
+            <button
+              class="btn btn-warning"
+              type="submit"
+              v-on:click="deleteNotes"
+            >
               <i class="fa fa-arrow-circle-right fa-lg"></i>
             </button>
           </td>
@@ -45,8 +49,9 @@ export default {
     // return this.$store.state.notes;
   },
   methods: {
-    setAllNotes() {
-      this.$store.dispatch("setAllNotes"), this.$route.params.id;
+    deleteNotes() {
+      debugger;
+      this.$store.dispatch("deleteNote"), this.$store.state.activeNote.id;
     }
   },
   computed: {

@@ -19,13 +19,16 @@
             style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left; width: 100%;"
           >
             <button
+              @submit.prevent="deleteBug()"
               class="btn-danger"
               style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
+              type="submit"
               v-on:click="deleteBug"
             >
               <i class="fas fa-trash-alt"></i>
               Delete Bug
             </button>
+
             <h1 style="text-align: left;">Bug: {{ liveBug.title }}</h1>
 
             <h2 style="text-align: left;">
@@ -47,6 +50,9 @@
             ></textarea>
           </div>
           <!-- <div class="row"> -->
+          <button @click="showAlert">
+            Delete Bug
+          </button>
           <div
             class="col-12 shadow"
             style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
@@ -91,7 +97,7 @@ import NoteList from "@/components/NoteList";
 export default {
   name: "bugDetail",
   mounted() {
-    this.$store.dispatch("getActiveBug");
+    this.$store.dispatch("getActiveBug", this.$route.params.id);
   },
   data() {
     return {
@@ -102,7 +108,23 @@ export default {
 
   methods: {
     deleteBug() {
+      debugger;
       this.$store.dispatch("closeBug", this.liveBug.id);
+    },
+    showAlert() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        }
+      });
     }
   },
   props: ["bugs", "bug", "bugDetails", "activeBugs", "notelist"],
