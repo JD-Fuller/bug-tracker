@@ -47,7 +47,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getBugs");
+    return this.$store.dispatch("getBugs");
     console.log("buglistcomponent - mounted getBugs");
   },
   methods: {

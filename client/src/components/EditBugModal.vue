@@ -64,7 +64,8 @@ export default {
         title: "",
         reportedBy: "",
         id: this.$route.params.id,
-        closed: this.$route.params.closed
+        closed: this.$store.state.activeBug.closed
+        //Do not change the above closed to anything other than what it is right now
       }
     };
   },
@@ -77,7 +78,8 @@ export default {
       this.editedBug = {
         description: "",
         title: "",
-        reportedBy: ""
+        reportedBy: "",
+        closed: this.$store.state.activeBug.closed
         // id: this.$route.params.id
       };
       console.log("A bug was edited in the addbug.vue", this.editedBug);
