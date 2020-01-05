@@ -12,18 +12,17 @@
     >
       <thead class="thead-light">
         <tr>
-          <th scope="col" style="text-align: left;">Title</th>
-          <th scope="col">Reported By</th>
-          <th scope="col">Status</th>
-          <th scope="col">Last Modified</th>
+          <th @click="sort('title')" scope="col" style="text-align: left;">
+            Title
+          </th>
+          <th @click="sort('reportedBy')" scope="col">Reported By</th>
+          <th @click="sort('closed')" scope="col">Status</th>
+          <th @click="sort('updatedAt')" scope="col">Last Modified</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table" v-for="bug in bugs" :key="bug._id">
-          <router-link
-            :to="{ name: 'bugs', params: { id: bug._id } }"
-            v-on:click="setActiveBug(bug._id) + setAllNotes(bug._id)"
-          >
+        <tr class="table" v-for="bug in sortedBugs" :key="bug._id">
+          <router-link :to="{ name: 'bugs', params: { id: bug._id } }">
             <td style="text-align: left;">{{ bug.title }}</td>
           </router-link>
           <td>{{ bug.reportedBy }}</td>
@@ -34,6 +33,7 @@
         </tr>
       </tbody>
     </table>
+    debug: sort={{ currentSort }}, dir={{ currentSortDir }}
   </div>
 </template>
 
@@ -42,8 +42,11 @@ export default {
   name: "BugList",
   data() {
     return {
+      bugs: [],
       search: "",
-      updatedAt: ""
+      updatedAt: "",
+      currentSort: "title",
+      currentSortDir: "asc"
     };
   },
   mounted() {
@@ -56,13 +59,19 @@ export default {
     },
     setAllNotes() {
       this.$store.dispatch("setAllNotes"), this.$route.params.id;
+    },
+    sort(s) {
+      if (s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === "asc" ? "desc" : "asc";
+      }
+      this.currentSort = s;
     }
   },
   computed: {
     // Returns all bugs to the list
-    bugs() {
-      return this.$store.state.bugs;
-    },
+    // bugs() {
+    //   return this.$store.state.bugs;
+    // },
     status() {
       if (this.$store.state.activeBug.closed === true) {
         return "Closed";
@@ -99,6 +108,15 @@ export default {
       var classClosed = "status";
       var color;
       var status = document.getElementsByClassName();
+    },
+    sortedBugs() {
+      return this.$store.state.bugs.sort((a, b) => {
+        let modifier = 1;
+        if (this.currentSortDir === "desc") modifier = -1;
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if (a[this.currentSortDir] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      });
     }
   }
 };
@@ -117,6 +135,9 @@ img {
 }
 table {
   text-align: end;
+}
+th {
+  cursor: pointer;
 }
 .status {
   color: red;

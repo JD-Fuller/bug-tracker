@@ -19,10 +19,12 @@
             style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left; width: 100%;"
           >
             <button
+              id="status"
               @submit.prevent="deleteBug()"
               class="btn-danger"
               style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
               type="submit"
+              :disabled="isDisabled"
               v-on:click="deleteBug"
             >
               <i class="fas fa-trash-alt"></i>
@@ -50,7 +52,7 @@
             ></textarea>
           </div>
           <!-- <div class="row"> -->
-          <button @click="showAlert">
+          <button id="button" @click="showAlert">
             Delete Bug
           </button>
           <div
@@ -102,7 +104,8 @@ export default {
   data() {
     return {
       notes: "",
-      editModal: {}
+      editModal: {},
+      status: false
     };
   },
 
@@ -138,11 +141,25 @@ export default {
     liveBug() {
       return this.$store.state.activeBug;
     },
+    isDisabled() {
+      if (this.$store.state.activeBug.closed) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     status() {
       if (this.$store.state.activeBug.closed === true) {
         return "Closed";
       } else {
         return "Open";
+      }
+    },
+    disableButton() {
+      if (this.$store.state.activeBug) {
+        document.getElementById("button").disabled = true;
+      } else {
+        document.getElementById("button").disabled = false;
       }
     }
     // activeBug() {
