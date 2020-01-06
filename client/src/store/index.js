@@ -75,7 +75,6 @@ export default new Vuex.Store({
       commit("setActiveBug", res.data);
     },
     async closeBug({ commit, dispatch }, id) {
-      debugger;
       let res = await _api.delete("bugs/" + id);
       commit("setActiveBug" && "setAllBugs", res.data);
     },
@@ -116,7 +115,6 @@ export default new Vuex.Store({
       commit("setAllNotes", res.data);
     },
     async deleteNote({ commit, dispatch }, id) {
-      debugger;
       let res = await _api.delete("notes/" + id);
       commit("setAllNotes");
     }

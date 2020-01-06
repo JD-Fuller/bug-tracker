@@ -24,7 +24,7 @@
             >
               <i class="fa fa-arrow-circle-right fa-lg"></i>
             </button>
-            <removeNote />
+            <!-- <removeNote /> -->
             <button v-on:click="alertDisplay">Remote Note</button>
           </td>
         </tr>

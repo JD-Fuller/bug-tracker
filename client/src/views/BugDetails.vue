@@ -26,6 +26,18 @@
               <i class="fas fa-trash-alt"></i>
               Delete Bug
             </button>
+            <p id="cb"></p>
+            <!-- <removeNote /> -->
+            <!-- <button
+              id="status"
+              class="btn-danger"
+              style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
+              type="submit"
+              v-on:click="alertDisplay"
+            >
+              <i class="fas fa-trash-alt"></i>
+              Close Bug
+            </button> -->
 
             <h1 style="text-align: left;">Bug: {{ liveBug.title }}</h1>
 
@@ -91,7 +103,7 @@ import NoteList from "@/components/NoteList";
 export default {
   name: "bugDetail",
   mounted() {
-    this.$store.dispatch("getActiveBug", this.$store.state.activeBug.id);
+    this.$store.dispatch("getActiveBug", this.$route.params.id);
   },
   // vuetify: new Vuetify(),
   data() {
@@ -108,9 +120,26 @@ export default {
   },
   methods: {
     deleteBug() {
-      debugger;
-      this.$store.dispatch("closeBug", this.liveBug.id);
+      var result = confirm("Are you sure you want to close this bug?");
+      if (result == true) {
+        this.$store.dispatch("closeBug", this.liveBug.id);
+      }
     }
+    // alertDisplay() {
+    //   $swal({
+    //     title: "Are you sure?",
+    //     text: "You will not be able to open this bug again",
+    //     type: "warning",
+    //     confirmButtonText: "Yes!",
+    //     showCancelButton: true
+    //   }).then(result => {
+    //     if (result.value) {
+    //       this.deleteBug();
+    //     } else if (result.dismiss === "cancel") {
+    //       swal("Cancelled", "Your stay here :)", "error");
+    //     }
+    //   });
+    // }
   },
   props: ["bugs", "bug", "bugDetails", "activeBugs", "notelist"],
   computed: {
