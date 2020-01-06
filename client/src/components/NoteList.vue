@@ -47,9 +47,6 @@ export default {
   mounted() {
     //Confirmed this mounted is working - gtg
     return this.$store.dispatch("getNotesByBugId", this.$route.params.id);
-    // return this.$store.dispatch("getNotesById", this.$route.params.id);
-    // debugger;
-    // return this.$store.state.notes;
   },
   methods: {
     setActiveNote() {

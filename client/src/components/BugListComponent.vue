@@ -1,11 +1,11 @@
 <template>
   <div class="table-responsive shadow" id="bug-table">
-    <input
+    <!-- <input
       type="text"
       id="bugFilter"
       v-model="search"
       placeholder="Add filter criteria..."
-    />
+    /> -->
     <table
       class="table table-striped table-borderless table-hover"
       id="bugTable"

@@ -26,7 +26,6 @@
               <i class="fas fa-trash-alt"></i>
               Delete Bug
             </button>
-            <p id="cb"></p>
             <!-- <removeNote /> -->
             <!-- <button
               id="status"
