@@ -1,6 +1,9 @@
 <template>
   <div class="about">
     <h1>About Page</h1>
+
+    This App is a test-bed for making a bug tracker. This was done as part of
+    the Boise CodeWorks Winter Project over the Christmas Break.
     <div class="row justify-content-center">
       <!-- brought back title withe named slot property, same modal, simple styling -->
       <button class="btn btn-danger" data-toggle="modal" data-target="#three">
