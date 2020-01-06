@@ -1,8 +1,5 @@
 <template>
   <div class="bugdetail container-fluid">
-    <!-- <div v-if="loading" class="loading">Loading...</div> -->
-    <!-- <div v-if="error" class="error">{{ error }}</div> -->
-
     <div v-if="liveBug" class="content">
       <div class="row" style="padding-bottom: 3rem;">
         <div
@@ -24,7 +21,6 @@
               class="btn-danger"
               style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
               type="submit"
-              :disabled="isDisabled"
               v-on:click="deleteBug"
             >
               <i class="fas fa-trash-alt"></i>
@@ -51,10 +47,6 @@
               placeholder="Bug details..."
             ></textarea>
           </div>
-          <!-- <div class="row"> -->
-          <button id="button" @click="showAlert">
-            Delete Bug
-          </button>
           <div
             class="col-12 shadow"
             style="margin-bottom: 2rem; background-color: #f0f2f3; padding: 1rem; text-align: left;"
@@ -99,44 +91,28 @@ import NoteList from "@/components/NoteList";
 export default {
   name: "bugDetail",
   mounted() {
-    this.$store.dispatch("getActiveBug", this.$route.params.id);
+    this.$store.dispatch("getActiveBug", this.$store.state.activeBug.id);
   },
+  // vuetify: new Vuetify(),
   data() {
     return {
+      // liveBug: {},
+      reportedBy: "",
+      title: "",
+      closed: "",
+      description: "",
       notes: "",
-      editModal: {},
-      status: false
+      editModal: {}
+      // status: false
     };
   },
-
   methods: {
     deleteBug() {
       debugger;
       this.$store.dispatch("closeBug", this.liveBug.id);
-    },
-    showAlert() {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(result => {
-        if (result.value) {
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        }
-      });
     }
   },
   props: ["bugs", "bug", "bugDetails", "activeBugs", "notelist"],
-  mounted() {
-    this.$store.dispatch("getActiveBug", this.$route.params.id);
-
-    // return this.$store.dispatch("getActiveBug", this.$route.params.id);
-    console.log("from bugdetails - mounted");
-  },
   computed: {
     liveBug() {
       return this.$store.state.activeBug;
@@ -181,4 +157,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.open {
+  color: green;
+}
+.closed {
+  color: red;
+}
+</style>

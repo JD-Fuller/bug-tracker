@@ -10,7 +10,10 @@
           <i class="fas fa-plus">BUG</i>
         </button>
       </router-link>
-      <router-view></router-view>
+      <router-view
+        :activebug="activeBug"
+        v-if="activeBug != undefined"
+      ></router-view>
       <div class="form-group">
         <input
           type="text"
@@ -87,6 +90,9 @@ export default {
     },
     bugs() {
       return this.$store.state.bugs;
+    },
+    activeBug() {
+      return this.$store.state.activeBug;
     }
   }
 };

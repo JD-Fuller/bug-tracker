@@ -33,7 +33,7 @@
         </tr>
       </tbody>
     </table>
-    debug: sort={{ currentSort }}, dir={{ currentSortDir }}
+    <!-- debug: sort={{ currentSort }}, dir={{ currentSortDir }} -->
   </div>
 </template>
 

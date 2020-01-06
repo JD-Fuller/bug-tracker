@@ -63,7 +63,8 @@ export default {
         description: "",
         title: "",
         reportedBy: "",
-        id: this.$route.params.id,
+        id: this.$store.state.activeBug.id,
+        // id: this.$route.params.id,
         closed: this.$store.state.activeBug.closed
         //Do not change the above closed to anything other than what it is right now
       }
@@ -72,7 +73,6 @@ export default {
 
   methods: {
     editBug() {
-      debugger;
       let bug = { ...this.editedBug };
       this.$store.dispatch("editBug", bug);
       this.editedBug = {

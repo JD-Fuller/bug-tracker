@@ -20,10 +20,12 @@
             <button
               class="btn btn-warning"
               type="submit"
-              v-on:click="deleteNotes"
+              v-on:click="setActiveNote"
             >
               <i class="fa fa-arrow-circle-right fa-lg"></i>
             </button>
+            <removeNote />
+            <button v-on:click="alertDisplay">Remote Note</button>
           </td>
         </tr>
       </tbody>
@@ -32,6 +34,7 @@
 </template>
 
 <script>
+import removeNote from "@/components/RemoveNoteModal";
 export default {
   name: "NoteList",
   data() {
@@ -49,9 +52,16 @@ export default {
     // return this.$store.state.notes;
   },
   methods: {
-    deleteNotes() {
+    setActiveNote() {
       debugger;
-      this.$store.dispatch("deleteNote"), this.$store.state.activeNote.id;
+      this.$store.dispatch("setActiveNote"), this.$route.params.id;
+    },
+    // deleteNotes() {
+    //   debugger;
+    //   this.$store.dispatch("deleteNote"), this.$store.state.notes.id;
+    // },
+    alertDisplay() {
+      this.$swal('heading", "this is a heading', "ok");
     }
   },
   computed: {
@@ -68,6 +78,9 @@ export default {
     // } else {
     //   return "Open";
     // }
+  },
+  components: {
+    removeNote
   }
 };
 </script>

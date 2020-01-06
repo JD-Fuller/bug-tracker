@@ -6,6 +6,9 @@ import store from "./store";
 import moment from "moment";
 import VueSweetalert2 from "vue-sweetalert2";
 
+// @ts-ignore
+Vue.use(VueSweetalert2);
+
 Vue.config.productionTip = false;
 // @ts-ignore
 Vue.filter("formatDate", function(value) {

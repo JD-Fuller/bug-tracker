@@ -38,7 +38,7 @@
     <div class="row">
       <div class="buglist ml-5">
         <hr />
-        <h2 style="text-align: left;">Open Bugs:{{ confirmation }}</h2>
+        <h2 style="text-align: left;">Total Bugs:{{ confirmation }}</h2>
         <bugList v-bind:bugs="bugs" />
       </div>
     </div>
@@ -63,6 +63,21 @@ export default {
     BugModal
   },
   computed: {
+    // bugs() {
+    //   return this.$store.state.bugs;
+    // },
+    // confirmation() {
+    //   let count = 0;
+    //   let array = this.$store.state.bugs;
+    //   debugger;
+    //   for (let i = 0; i <= array.length; i++) {
+    //     if (!array[i].closed) {
+    //       debugger;
+    //       count++;
+    //     }
+    //     return count;
+    //   }
+    // },
     confirmation() {
       return this.$store.state.bugs.length;
     },
