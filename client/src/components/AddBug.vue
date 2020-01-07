@@ -1,15 +1,11 @@
 <template>
-  <form>
+  <form @submit.prevent="onSubmit">
     <div class="col form-group" style="text-align: left;">
-      <router-link to="bugs/:id">
-        <button
-          class="btn btn-success"
-          style="float: right;"
-          v-on:click="onSubmit"
-        >
-          <i class="fas fa-plus">BUG</i>
-        </button>
-      </router-link>
+      <!-- <router-link to="bugs"> -->
+      <button class="btn btn-success" style="float: right;" type="submit">
+        <i class="fas fa-plus">BUG</i>
+      </button>
+      <!-- </router-link> -->
       <!-- <router-view
         :activebug="activeBug"
         v-if="activeBug != undefined"
@@ -78,10 +74,9 @@ export default {
         title: "",
         reportedBy: ""
       };
+      this.activeBug();
+      this.$router.push(`bugs/${this.activeBug._id}`);
       console.log("A bug was created in the addbug.vue");
-    },
-    setActiveBug() {
-      this.$store.dispatch("setActiveBug"), this.$route.params.id;
     }
   },
   computed: {

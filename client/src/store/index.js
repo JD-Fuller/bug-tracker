@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import router from "../router";
 
 let _api = axios.create({
   baseURL: "//localhost:3000/api"
@@ -58,6 +59,8 @@ export default new Vuex.Store({
     async createBug({ commit, dispatch }, bug) {
       let res = await _api.post("bugs", bug);
       commit("addBug" && "setActiveBug", res.data);
+      router.push(`bugs/${res.data._id}`);
+
       // debugger;
       // commit("setActiveBug", res.data);
     },
