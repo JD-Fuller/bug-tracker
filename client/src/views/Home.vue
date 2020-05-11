@@ -5,7 +5,7 @@
         class="col header-text"
         style="min-height: 5vh; font: all-small-caps bold 2em;"
       >
-        BUG Tracker
+        BUG Tracker 3000
         <img alt="Vue logo" src="../assets/logo.png" />iew
       </div>
 
@@ -60,7 +60,7 @@ export default {
   components: {
     AddBug,
     BugList,
-    BugModal
+    BugModal,
   },
   computed: {
     // bugs() {
@@ -87,8 +87,8 @@ export default {
       } else {
         return "Open";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
