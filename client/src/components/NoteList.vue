@@ -18,14 +18,15 @@
           <td style="text-align: center;">{{ note.createdAt | formatDate }}</td>
           <td style="text-align: center;">
             <button
+              @submit.prevent="deleteNote(note._id)"
               class="btn btn-warning"
               type="submit"
-              v-on:click="setActiveNote"
+              @click="deleteNote"
             >
               <i class="fa fa-arrow-circle-right fa-lg"></i>
             </button>
             <!-- <removeNote /> -->
-            <button v-on:click="alertDisplay">Remote Note</button>
+            <!-- <button @click="deleteNote(note._id)">Remove Note</button> -->
           </td>
         </tr>
       </tbody>
@@ -53,10 +54,10 @@ export default {
       debugger;
       this.$store.dispatch("setActiveNote"), this.$route.params.id;
     },
-    // deleteNotes() {
-    //   debugger;
-    //   this.$store.dispatch("deleteNote"), this.$store.state.notes.id;
-    // },
+    deleteNote(noteId) {
+      debugger;
+      this.$store.dispatch("deleteNote"), this.$route.params.id;
+    },
     alertDisplay() {
       this.$swal('heading", "this is a heading', "ok");
     }

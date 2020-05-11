@@ -21,7 +21,7 @@
               class="btn-danger"
               style="float: right; font-size: 2em; border-style: none; font-family: montserrat; font-variant: all-small-caps;"
               type="submit"
-              v-on:click="deleteBug"
+              @click="deleteBug"
             >
               <i class="fas fa-trash-alt"></i>
               Delete Bug

@@ -1,11 +1,5 @@
 <template>
   <div class="table-responsive shadow" id="bug-table">
-    <!-- <input
-      type="text"
-      id="bugFilter"
-      v-model="search"
-      placeholder="Add filter criteria..."
-    /> -->
     <table
       class="table table-striped table-borderless table-hover"
       id="bugTable"
@@ -29,7 +23,6 @@
           <td class="open" v-if="bug.closed === false">Open</td>
           <td class="closed" v-else>Closed</td>
           <td>{{ bug.updatedAt | formatDate }}</td>
-          <!-- <router-view /> -->
         </tr>
       </tbody>
     </table>
